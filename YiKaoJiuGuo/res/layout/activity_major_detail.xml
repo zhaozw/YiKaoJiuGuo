@@ -1,0 +1,144 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_major_detail_sv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MajorDetailActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" >
+
+            <ImageView
+                android:id="@+id/logo_major_detail_iv"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/default_top" />
+
+            <TextView
+                android:id="@+id/major_major_detail_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/logo_major_detail_iv"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/logo_major_detail_iv"
+                android:text="qinghua"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/college_major_detail_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/major_major_detail_tv"
+                android:layout_below="@id/major_major_detail_tv"
+                android:layout_marginTop="5dp"
+                android:text="qinghua"
+                android:textColor="@color/green"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/batch_major_detail_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/major_major_detail_tv"
+                android:layout_below="@id/college_major_detail_tv"
+                android:layout_marginTop="5dp"
+                android:text="本科一批"
+                android:textColor="@color/grey" />
+
+            <TextView
+                android:id="@+id/recruit_major_detail_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/major_major_detail_tv"
+                android:layout_below="@id/batch_major_detail_tv"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/grey"
+                android:text="XX人关注" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/college_major_detail_btn"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:background="@drawable/button"
+                android:gravity="center"
+                android:textColor="@color/green"
+                android:text="大学详情"/>
+
+            <Button
+                android:id="@+id/join_image_detail_btn"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/button"
+                android:textColor="@color/green"
+                android:text="加入志愿"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/light_grey"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/detail_major_detail_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:background="@color/green"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:text="招生详情"/>
+
+            <TextView
+                android:id="@+id/exam_major_detail_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:text="历年考题"/>
+
+            <TextView
+                android:id="@+id/score_major_detail_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textSize="14sp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="录取分数"/>
+
+            <TextView
+                android:id="@+id/introduce_major_detail_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textSize="14sp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="专业介绍"/>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/content_major_detail_fl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</ScrollView>
