@@ -12,6 +12,10 @@
     <color name="translucent">#b0000000</color>
     <color name="chocolate">#ff333333</color>
     <color name="white">#ffffffff</color>
+    <!-- 深绿色 -->
+    <color name="green_dark">#05aa99</color>
+    <!-- 浅绿 -->
+    <color name="green_light">#83d2cb</color>
     
 
 </resources>

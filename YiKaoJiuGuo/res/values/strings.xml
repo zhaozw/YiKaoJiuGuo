@@ -6,5 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_major_detail">MajorDetailActivity</string>
     <string name="title_activity_college_detail">CollegeDetailActivity</string>
+    <string name="title_activity_first_category">FirstCategoryActivity</string>
+    <string name="title_activity_second_category">SecondCategoryActivity</string>
 
 </resources>

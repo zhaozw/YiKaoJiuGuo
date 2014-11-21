@@ -1,187 +1,152 @@
 package com.kongfuzi.student.ui.kao;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
-import com.kongfuzi.student.R;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.kongfuzi.student.R;
+import com.kongfuzi.student.ui.global.BaseActivity;
+import com.kongfuzi.student.ui.message.MessageFragment;
+import com.kongfuzi.student.ui.usercenter.LoginActivity;
+import com.kongfuzi.student.ui.usercenter.UserCenterFragment;
+
 /**
  * @author LBDL
  * @date 2014-11-17 12:52
  * @desc 首页面
  */
-public class HomeActivity extends SlidingFragmentActivity implements OnClickListener{
+public class HomeActivity extends BaseActivity implements OnClickListener {
 
-	private LinearLayout kao_ll;
-	private LinearLayout msg_ll;
-	private LinearLayout user_center_ll;
-
-	private ImageView kao_iv;
-	private ImageView msg_iv;
-	private ImageView user_center_iv;
-
-	private TextView kao_tv;
-	private TextView msg_tv;
-	private TextView user_center_tv;
-	
-	private KaoFragment kaoFragment = null;
-	private MessageFragment messageFragment = null;
-	private UserCenterFragment userCenterFragment = null;
+	private List<LinearLayout> tabLayoutList;
+	private List<ImageView> tabImageList;
+	private List<TextView> tabTextList;
+	private List<Fragment> fragmentList;
+	private int[] tabImageSelectedArray = { R.drawable.home_kao_selected, R.drawable.home_msg_selected,
+			R.drawable.home_user_center_selected };
+	private int[] tabImageUnSelectedArray = { R.drawable.home_kao_unselected, R.drawable.home_msg_unselected,
+			R.drawable.home_user_center_unselected };
+	private int curTab = 0;
 
 	private FragmentManager fragmentManager;
+	
+	private static final String TAG = "HomeActivity";
+
+	/**
+	 * 回调接口 搜索
+	 * */
+	public interface search {
+		public void searchForResult();
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.activity_main);
-		setBehindContentView(R.layout.menu_frame);
+		// setBehindContentView(R.layout.menu_frame);
+
+		// getSlidingMenu().setBehindWidth(300);
 
 		initView();
 
-		fragmentManager = getSupportFragmentManager();
-		
 		setTabSelection(0);
 	}
-	
 
 	private void initView() {
+		tabLayoutList = new ArrayList<LinearLayout>();
+		tabLayoutList.add((LinearLayout) findViewById(R.id.kao_main_ll));
+		tabLayoutList.add((LinearLayout) findViewById(R.id.msg_main_ll));
+		tabLayoutList.add((LinearLayout) findViewById(R.id.user_center_main_ll));
 
-		kao_ll = (LinearLayout) findViewById(R.id.kao_main_ll);
-		msg_ll = (LinearLayout) findViewById(R.id.msg_main_ll);
-		user_center_ll = (LinearLayout) findViewById(R.id.user_center_main_ll);
+		tabImageList = new ArrayList<ImageView>();
+		tabImageList.add((ImageView) findViewById(R.id.kao_main_iv));
+		tabImageList.add((ImageView) findViewById(R.id.msg_main_iv));
+		tabImageList.add((ImageView) findViewById(R.id.user_center_main_iv));
 
-		kao_iv = (ImageView) findViewById(R.id.kao_main_iv);
-		msg_iv = (ImageView) findViewById(R.id.msg_main_iv);
-		user_center_iv = (ImageView) findViewById(R.id.user_center_main_iv);
+		tabTextList = new ArrayList<TextView>();
+		tabTextList.add((TextView) findViewById(R.id.kao_main_tv));
+		tabTextList.add((TextView) findViewById(R.id.msg_main_tv));
+		tabTextList.add((TextView) findViewById(R.id.user_center_main_tv));
 
-		kao_tv = (TextView) findViewById(R.id.kao_main_tv);
-		msg_tv = (TextView) findViewById(R.id.msg_main_tv);
-		user_center_tv = (TextView) findViewById(R.id.user_center_main_tv);
-		
-		kao_ll.setOnClickListener(this);
-		msg_ll.setOnClickListener(this);
-		user_center_ll.setOnClickListener(this);
+		for (int i = 0; i < tabLayoutList.size(); i++) {
+			tabLayoutList.get(i).setOnClickListener(this);
+		}
+
+		// 开启一个Fragment事务
+		fragmentList = new ArrayList<Fragment>();
+		fragmentManager = getSupportFragmentManager();
+		FragmentTransaction transaction = fragmentManager.beginTransaction();
+		fragmentList.add(KaoFragment.getInstance());
+		fragmentList.add(MessageFragment.getInstance());
+		fragmentList.add(UserCenterFragment.getInstance());
+		for (int i = 0; i < fragmentList.size(); i++) {
+			transaction.add(R.id.content_main_fl, fragmentList.get(i));
+		}
+		transaction.commit();
 	}
-	
+
 	/**
 	 * 根据传入的index参数来设置选中的tab页。
 	 * 
 	 * @param i
-	 * 每个tab页对应的下标。0:报考 1:消息 2:我的
+	 *            每个tab页对应的下标。0:报考 1:消息 2:我的
 	 */
 	private void setTabSelection(int i) {
 		
-		// 每次选中之前先清除掉上次的选中状态
-		clearSelection();
+
 		// 开启一个Fragment事务
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
-		// 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
-		hideFragments(transaction);
-		switch (i) {
-		case 0:
-			// 当点击了报考tab时，改变控件的图片和文字颜色
-			kao_iv.setImageResource(R.drawable.home_kao_selected);
-			kao_tv.setTextColor(getResources().getColor(R.color.green));
-			if (kaoFragment == null) {
-				// 如果MessageFragment为空，则创建一个并添加到界面上
-				kaoFragment = KaoFragment.getInstance();
-				transaction.add(R.id.content_main_fl,kaoFragment);
-				
-			} else {
-				transaction.show(kaoFragment);
-			}
-			break;
-		case 1:
+
+		for (int index = 0; index < tabLayoutList.size(); index++) {
+			Log.i(TAG, "index = " + index);
+			Log.i(TAG, "i = " + i + ", fragment isHidden:" + fragmentList.get(index).isHidden());
 			
-			msg_iv.setImageResource(R.drawable.home_msg_selected);
-			msg_tv.setTextColor(getResources().getColor(R.color.green));
-			if (messageFragment == null) {
-				messageFragment = MessageFragment.getInstance();
-				transaction.add(R.id.content_main_fl, messageFragment);
-				
+			if (i == index) {
+				tabImageList.get(index).setImageResource(tabImageSelectedArray[index]);
+				tabTextList.get(index).setTextColor(getResources().getColor(R.color.green));
+				transaction.show(fragmentList.get(index));
 			} else {
-				
-				transaction.show(messageFragment);
+				tabImageList.get(index).setImageResource(tabImageUnSelectedArray[index]);
+				tabTextList.get(index).setTextColor(getResources().getColor(R.color.black));
+				transaction.hide(fragmentList.get(index));
 			}
-			break;
-		case 2:
-			user_center_iv.setImageResource(R.drawable.home_user_center_selected);
-			user_center_tv.setTextColor(getResources().getColor(R.color.green));
-			if (userCenterFragment == null) {
-				// 如果NewsFragment为空，则创建一个并添加到界面上
-				userCenterFragment = UserCenterFragment.getInstance();
-				transaction.add(R.id.content_main_fl, userCenterFragment);
-				
-			} else {
-				transaction.show(userCenterFragment);
-			}
-			break;
 		}
+		curTab = i;
 		transaction.commit();
-	}
-	
-	/**
-	 * 清除掉所有的选中状态。
-	 */
-	private void clearSelection() {
-		kao_iv.setImageResource(R.drawable.home_kao_unselected);
-		kao_tv.setTextColor(getResources().getColor(R.color.grey));
-		msg_iv.setImageResource(R.drawable.home_msg_unselected);
-		msg_tv.setTextColor(getResources().getColor(R.color.grey));
-		user_center_iv.setImageResource(R.drawable.home_user_center_unselected);
-		user_center_tv.setTextColor(getResources().getColor(R.color.grey));
+		fragmentManager.executePendingTransactions();
 	}
 
-	/**
-	 * 将所有的Fragment都置为隐藏状态。
-	 * 
-	 * @param transaction
-	 *            用于对Fragment执行操作的事务
-	 */
-	private void hideFragments(FragmentTransaction transaction) {
-		
-		if (kaoFragment != null) {
-			transaction.hide(kaoFragment);
-		}
-		if (messageFragment != null) {
-			transaction.hide(messageFragment);
-		}
-		if (userCenterFragment != null) {
-			transaction.hide(userCenterFragment);
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent event) {
+		KaoFragment kaoFragment = (KaoFragment) fragmentList.get(0);
+		if (curTab == 0 && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+			kaoFragment.searchForResult();
+			return true;
+		}else{
+			return super.dispatchKeyEvent(event);
 		}
 	}
 
-	
 	@Override
 	public void onClick(View v) {
-		
-		switch (v.getId()) {
-		
-		//报考
-		case R.id.kao_main_ll:
-			setTabSelection(0);
-			break;
-		//消息
-		case R.id.msg_main_ll:
-			
-			setTabSelection(1);
-			break;
-		//我的
-		case R.id.user_center_main_ll:
-			
-			setTabSelection(2);
-			break;
 
-		default:
-			break;
+		for (int i = 0; i < tabLayoutList.size(); i++) {
+			if (tabLayoutList.get(i).getId() == v.getId()) {
+				setTabSelection(i);
+				break;
+			}
 		}
 	}
 

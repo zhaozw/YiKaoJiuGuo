@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:padding="5dp"
+    android:gravity="center_vertical" >
+
+    <ImageView
+        android:id="@+id/avatar_item_kao_right_iv"
+        android:layout_width="130dp"
+        android:layout_height="100dp"
+        android:src="@drawable/default_top" />
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:orientation="vertical">
+        <TextView 
+            android:id="@+id/college_item_fragment_kao_right_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="college"
+            android:textSize="16sp"/>
+        <TextView 
+            android:id="@+id/major_item_fragment_kao_right_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green"
+            android:text="major"
+            android:textSize="16sp"/>
+        <TextView 
+            android:id="@+id/batch_item_fragment_kao_right_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey"
+            android:text="batch"
+            android:textSize="16sp"/>
+        <TextView 
+            android:id="@+id/recruit_count_item_fragment_kao_right_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey"
+            android:text="recruit_count"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical" >
+    
+    <ImageView 
+        android:id="@+id/img_about_tv"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/about_top"/>
+    <TextView 
+        android:id="@+id/content_about_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:text="孔夫子（www.kongfuzi.com）成立于2014年。致力于为艺术生备考，提供智能化数据分析服务。旨在以通过互联网技术，把严重困扰高考艺术生十余年的专业考前备考等严重碎片化的问题，实现一站式智能化的精确信息匹配，让考生实时掌握同目标大学的往届和同届学生的水平状态，实现知己知彼的智能化备考。
+
+　　孔夫子经过两年的技术研发和数据整合，已于8月下旬正式发布。孔夫子由来自清华大学美术学院、计算机系、经管学院的博士、硕士团队创建，公司日前已获得数百万元天使轮投资，由清华大学科技园、清华大学紫光教育、经纬中国等联合投资。"/>
+    
+
+</LinearLayout>

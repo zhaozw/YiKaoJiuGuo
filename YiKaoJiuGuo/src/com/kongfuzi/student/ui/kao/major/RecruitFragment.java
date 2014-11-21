@@ -1,15 +1,13 @@
 package com.kongfuzi.student.ui.kao.major;
 
-import org.json.JSONObject;
-
-import com.kongfuzi.student.R;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.kongfuzi.student.R;
 /**
  * @author LBDL
  * @desc 招生详情(专业详情)

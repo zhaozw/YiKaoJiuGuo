@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey"
+    android:gravity="center_vertical"
+	    android:orientation="horizontal" >
+	    
+    <FrameLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp">
+        <View 
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/grey"/>
+        
+        <TextView android:id="@+id/position_item_my_course_tv"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/my_course_icon"
+            android:text="1"/>
+    </FrameLayout>
+    
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:background="@color/white">
+        
+        <TextView 
+            android:id="@+id/attr_item_my_course_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="素描"/>
+        <TextView 
+            android:id="@+id/name_item_my_course_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/attr_item_my_course_tv"
+            android:layout_toRightOf="@id/attr_item_my_course_tv"
+            android:layout_marginLeft="5dp"
+            android:textSize="16sp"
+            android:text="人物头像写生"/>
+        
+        <LinearLayout 
+            android:id="@+id/content_item_my_course_list_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/attr_item_my_course_tv"
+            android:layout_below="@id/attr_item_my_course_tv"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"/>
+            
+        <!-- <TextView 
+            android:id="@+id/college0_item_my_course_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:layout_below="@id/attr_item_my_course_tv"
+            android:layout_alignLeft="@id/attr_item_my_course_tv"
+            android:layout_marginTop="5dp"
+            android:text="清华美院"/>
+        <TextView 
+            android:id="@+id/major0_item_my_course_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:layout_toRightOf="@id/college0_item_my_course_tv"
+            android:layout_alignBottom="@id/college0_item_my_course_tv"
+            android:layout_marginLeft="10dp"
+            android:text="清华美院"/>
+        <TextView 
+            android:id="@+id/college1_item_my_course_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:layout_below="@id/college0_item_my_course_tv"
+            android:layout_alignLeft="@id/college0_item_my_course_tv"
+            android:layout_marginTop="5dp"
+            android:text="清华美院"/>
+        <TextView 
+            android:id="@+id/major1_item_my_course_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+                android:layout_toRightOf="@id/college1_item_my_course_tv"
+            android:layout_alignBottom="@id/college1_item_my_course_tv"
+            android:layout_marginLeft="10dp"
+            android:text="清华美院"/>
+        <TextView 
+            android:id="@+id/college2_item_my_course_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:layout_below="@id/college1_item_my_course_tv"
+            android:layout_alignLeft="@id/college1_item_my_course_tv"
+            android:layout_marginTop="5dp"
+            android:text="清华美院"/>
+        <TextView 
+            android:id="@+id/major2_item_my_course_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:layout_below="@id/major1_item_my_course_tv"
+            android:layout_toRightOf="@id/college2_item_my_course_tv"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="清华美院"/> -->
+        
+        
+    </RelativeLayout>
+
+    
+
+</LinearLayout>

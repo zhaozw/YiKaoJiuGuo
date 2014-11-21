@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/green"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView 
+            android:id="@+id/setting_user_center_iv"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/user_center_setting_icon"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right|top"/>
+        <ImageView
+            android:id="@+id/avatar_user_center_iv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/user_center_default_icon" />
+
+        <TextView
+            android:id="@+id/nick_user_center_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="立即登录"
+            android:textColor="@color/white" />
+        
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/course_user_center_ll"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/user_center_course_icon"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="我的课程" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:drawableRight="@drawable/arrow_right"
+            android:paddingRight="10dp"
+            android:text="123"
+            android:textColor="@color/grey" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/light_grey" />
+
+    <LinearLayout
+        android:id="@+id/volunteer_user_center_ll"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/user_center_volunteer_icon"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="我的志愿" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:drawableRight="@drawable/arrow_right"
+            android:paddingRight="10dp"
+            android:text="123"
+            android:textColor="@color/grey" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/light_grey" />
+
+    <LinearLayout
+        android:id="@+id/schedule_user_center_ll"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/user_center_schedule_icon"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="考试日程" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:drawableRight="@drawable/arrow_right"
+            android:paddingRight="10dp"
+            android:text="123"
+            android:textColor="@color/grey" />
+    </LinearLayout>
+
+</LinearLayout>

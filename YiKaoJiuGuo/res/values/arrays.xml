@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- 筛选条件 -->
+    <string-array name="filter_condition">
+        <item>估分</item>
+        <item>专业分类</item>
+        <item>录取方式</item>
+        <item>本科批次</item>
+        <item>大学所在地</item>
+        <item>文理分类</item>
+        <item>生源地</item>
+        <item>省外按联考录取大学</item>
+    </string-array>
+    
+
+</resources>
