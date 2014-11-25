@@ -7,21 +7,21 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="18" />
-    
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:name=".support.YiKaoApplication"
+        android:name="com.kongfuzi.student.app.YiKaoApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.kongfuzi.student.ui.kao.HomeActivity"
+            android:name=".ui.kao.HomeActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Light.NoTitleBar"
             android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustPan" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,37 +30,52 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.kongfuzi.student.ui.kao.MajorDetailActivity"
+            android:name=".ui.kao.MajorDetailActivity"
             android:label="@string/title_activity_major_detail" >
         </activity>
         <activity
-            android:name="com.kongfuzi.student.ui.kao.CollegeDetailActivity"
+            android:name=".ui.setting.SettingActivity"
+            android:label="@string/action_settings" >
+        </activity>
+        <activity
+            android:name=".ui.usercenter.exam.ExaminationActivity"
+            android:label="@string/title_activity_examination" >
+        </activity>
+        <activity
+            android:name=".ui.usercenter.MyCourseActivity"
+            android:label="@string/title_activity_my_course" >
+        </activity>
+        <activity
+            android:name=".ui.kao.CollegeDetailActivity"
             android:label="@string/title_activity_college_detail" >
         </activity>
         <activity
-            android:name="com.kongfuzi.student.ui.kao.filter.FirstCategoryActivity"
+            android:name=".ui.kao.filter.FirstCategoryActivity"
             android:label="@string/title_activity_first_category" >
         </activity>
         <activity
-            android:name="com.kongfuzi.student.ui.kao.filter.SecondCategoryActivity"
+            android:name=".ui.kao.filter.SecondCategoryActivity"
             android:label="@string/title_activity_second_category" >
         </activity>
         <activity
-            android:name="com.kongfuzi.student.ui.usercenter.LoginActivity"
-            android:label="@string/title_activity_second_category" >
-            
+            android:name=".ui.usercenter.LoginActivity"
+            android:label="@string/title_activity_login" >
         </activity>
         <activity
-            android:name="com.kongfuzi.student.ui.usercenter.RegisterActivity"
+            android:name=".ui.usercenter.RegisterActivity"
+            android:label="@string/title_activity_register" >
+        </activity>
+        <activity
+            android:name=".ui.usercenter.CodeActivity"
             android:label="@string/title_activity_second_category" >
         </activity>
         <activity
-            android:name="com.kongfuzi.student.ui.usercenter.CodeActivity"
+            android:name=".ui.usercenter.ModifyPasswordActivity"
             android:label="@string/title_activity_second_category" >
         </activity>
         <activity
-            android:name="com.kongfuzi.student.ui.usercenter.ModifyPasswordActivity"
-            android:label="@string/title_activity_second_category" >
+            android:name=".ui.usercenter.exam.KaoDianActivity"
+            android:label="@string/title_activity_kao_dian" >
         </activity>
     </application>
 

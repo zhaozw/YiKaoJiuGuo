@@ -15,75 +15,75 @@
         android:orientation="vertical">
         
         <LinearLayout 
+            android:id="@+id/user_info_setting_ll"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
             <TextView 
-            android:id="@+id/user_info_setting_tv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/my_course_icon"
+            android:drawableLeft="@drawable/setting_user_info"
             android:drawableRight="@drawable/arrow_right"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:text="个人信息"/>
         </LinearLayout>
         <LinearLayout 
+            android:id="@+id/modify_pwd_setting_ll"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
             <TextView 
-            android:id="@+id/modify_pwd_setting_tv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/my_course_icon"
+            android:drawableLeft="@drawable/setting_modify_pwd"
             android:drawableRight="@drawable/arrow_right"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:text="修改密码"/>
         </LinearLayout>
         <LinearLayout 
+            android:id="@+id/about_setting_ll"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
             <TextView 
-            android:id="@+id/about_setting_tv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/my_course_icon"
+            android:drawableLeft="@drawable/setting_about"
             android:drawableRight="@drawable/arrow_right"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:text="关于我们"/>
         </LinearLayout>
         <LinearLayout 
+            android:id="@+id/feed_back_setting_ll"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
             <TextView 
-            android:id="@+id/feed_back_setting_tv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/my_course_icon"
+            android:drawableLeft="@drawable/setting_feed_back"
             android:drawableRight="@drawable/arrow_right"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:text="意见反馈"/>
         </LinearLayout>
         <LinearLayout 
+            android:id="@+id/clear_cache_setting_ll"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
             <TextView 
-            android:id="@+id/clear_cache_setting_tv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/my_course_icon"
+            android:drawableLeft="@drawable/setting_clear_cache"
             android:drawableRight="@drawable/arrow_right"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
@@ -93,6 +93,7 @@
     </LinearLayout>
     
     <LinearLayout 
+            android:id="@+id/share_setting_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -106,26 +107,25 @@
             android:layout_height="40dp"
             android:orientation="horizontal">
             <TextView 
-            android:id="@+id/share_setting_tv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/my_course_icon"
+            android:drawableLeft="@drawable/setting_share"
             android:drawableRight="@drawable/arrow_right"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:text="分享"/>
         </LinearLayout>
         <LinearLayout 
+            android:id="@+id/version_setting_ll"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
             <TextView 
-            android:id="@+id/version_setting_tv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/my_course_icon"
+            android:drawableLeft="@drawable/setting_version"
             android:drawableRight="@drawable/arrow_right"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
@@ -144,15 +144,15 @@
         android:orientation="vertical">
         
          <LinearLayout 
+            android:id="@+id/logout_setting_ll"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
             <TextView 
-            android:id="@+id/logout_setting_tv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/my_course_icon"
+            android:drawableLeft="@drawable/setting_exit"
             android:drawableRight="@drawable/arrow_right"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
@@ -160,6 +160,5 @@
         </LinearLayout>
         
     </LinearLayout>
-
 
 </LinearLayout>

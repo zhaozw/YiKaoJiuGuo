@@ -2,15 +2,15 @@ package com.kongfuzi.student.ui.adapter;
 
 import java.util.List;
 
-import com.kongfuzi.student.R;
-import com.kongfuzi.student.bean.Conditions;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.kongfuzi.student.R;
+import com.kongfuzi.student.bean.Conditions;
 
 public class LeftKaoAdapter extends BaseAdapter{
 	

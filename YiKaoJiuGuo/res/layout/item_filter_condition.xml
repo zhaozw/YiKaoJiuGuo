@@ -11,17 +11,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         android:text="fens"/>
     
     <TextView 
         android:id="@+id/content_item_filter_conditions_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawableRight="@drawable/arrow_right"
+        android:drawableRight="@drawable/arrow_right_white"
+        android:textColor="@color/white"
         android:layout_weight="1"
         android:gravity="right"
         android:drawablePadding="5dp"
-        android:hint="全部"/>
+        android:text="全部"/>
     
     
 

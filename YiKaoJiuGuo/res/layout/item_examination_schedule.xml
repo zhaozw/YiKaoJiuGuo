@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/position_item_examination_schedule_tv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:background="@drawable/examinationfirst_bg" />
+
+    <TextView
+        android:id="@+id/major_item_examination_schedule_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/position_item_examination_schedule_tv"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/position_item_examination_schedule_tv"
+        android:text="nihao"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/school_item_examination_schedule_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/major_item_examination_schedule_tv"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/major_item_examination_schedule_tv"
+        android:text="nihao"
+        android:textColor="@color/green"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/site_item_examination_schedule_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/major_item_examination_schedule_tv"
+        android:layout_below="@id/major_item_examination_schedule_tv"
+        android:text="nihao"
+        android:textColor="@color/light2_grey"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/date_item_examination_schedule_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/site_item_examination_schedule_tv"
+        android:layout_below="@id/site_item_examination_schedule_tv"
+        android:layout_marginTop="5dp"
+        android:text="nihao"
+        android:textColor="@color/light2_grey"
+        android:textSize="14sp" />
+
+</RelativeLayout>

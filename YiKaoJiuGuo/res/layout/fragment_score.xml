@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    tools:context=".MoreAdmissionActivity" >
+	
+    <ListView 
+        android:id="@+id/list_score_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:gravity="center"/>
+    
+    <ProgressBar  
+        android:id="@+id/progress_score_pb" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:layout_centerInParent="true"
+        style="?android:attr/progressBarStyleSmall" /> 
+
+</RelativeLayout>

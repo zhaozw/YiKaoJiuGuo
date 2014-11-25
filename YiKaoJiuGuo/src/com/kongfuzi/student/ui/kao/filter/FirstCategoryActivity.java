@@ -2,25 +2,23 @@ package com.kongfuzi.student.ui.kao.filter;
 
 import java.util.List;
 
-import com.google.gson.reflect.TypeToken;
-import com.kongfuzi.lib.volley.RequestQueue;
-import com.kongfuzi.lib.volley.Response.Listener;
-import com.kongfuzi.student.R;
-import com.kongfuzi.student.bean.Conditions;
-import com.kongfuzi.student.bean.Filter;
-import com.kongfuzi.student.support.YiKaoApplication;
-import com.kongfuzi.student.support.network.ArrayRequest;
-import com.kongfuzi.student.support.utils.BundleArgsConstants;
-import com.kongfuzi.student.ui.adapter.CategoryAdapter;
-import com.kongfuzi.student.ui.global.BaseActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+
+import com.google.gson.reflect.TypeToken;
+import com.kongfuzi.lib.volley.Response.Listener;
+import com.kongfuzi.student.R;
+import com.kongfuzi.student.app.YiKaoApplication;
+import com.kongfuzi.student.bean.Conditions;
+import com.kongfuzi.student.support.network.ArrayRequest;
+import com.kongfuzi.student.support.utils.BundleArgsConstants;
+import com.kongfuzi.student.ui.adapter.CategoryAdapter;
+import com.kongfuzi.student.ui.global.BaseActivity;
+import com.kongfuzi.student.ui.kao.HomeActivity;
 
 /**
  * @author LBDL
@@ -31,45 +29,14 @@ public class FirstCategoryActivity extends BaseActivity {
 
 	private ListView list_lv;
 
-	private RequestQueue queue;
-
-	// private LoadingDialog dialog = null;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_first_category);
 
-		// dialog = LoadingDialog.getInstance();
-		queue = YiKaoApplication.getQueueInstance();
-
-		list_lv = (ListView) findViewById(R.id.list_first_category_lv);
-
-		setTitle(getIntent().getStringExtra(BundleArgsConstants.TITLE));
 
 		getData();
-
-		list_lv.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Log.i("FirstCategory", "fasdfadsf");
-				//TODO  object == null
-				Object object = parent.getItemAtPosition(position);
-
-				if (position == getIntent().getIntExtra(BundleArgsConstants.INDEX, -1) && object != null
-						&& object instanceof Conditions) {
-					
-					Conditions conditions = (Conditions) object;
-
-					Intent intent = new Intent(FirstCategoryActivity.this, SecondCategoryActivity.class);
-					intent.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-					intent.putExtra(BundleArgsConstants.TITLE, conditions.ename);
-					startActivity(intent);
-				}
-
-			}
-		});
+		onItemListener();
 
 	}
 
@@ -83,13 +50,13 @@ public class FirstCategoryActivity extends BaseActivity {
 	}
 
 	private void getData() {
-		// dialog.show();
+		showLoadingDialog();
 		ArrayRequest<List<Conditions>> request = new ArrayRequest<List<Conditions>>(getIntent().getStringExtra(
 				BundleArgsConstants.URL), new Listener<List<Conditions>>() {
 
 			@Override
 			public void onResponse(List<Conditions> response) {
-				// dialog.dismiss();
+				dismissLoadingDialog();
 				list_lv.setAdapter(new CategoryAdapter(FirstCategoryActivity.this, response));
 
 			}
@@ -99,6 +66,49 @@ public class FirstCategoryActivity extends BaseActivity {
 		queue.add(request);
 		queue.start();
 	}
+	
+	private void onItemListener(){
+		
+		list_lv = (ListView) findViewById(R.id.list_first_category_lv);
+		//设置筛选条件分类title
+		setTitle(getIntent().getStringExtra(BundleArgsConstants.TITLE));
+		
+		list_lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Object object = parent.getItemAtPosition(position);
+				
+				if (object != null && object instanceof Conditions) {
+					
+					Intent intent = new Intent();
+					Conditions conditions = (Conditions) object;
+					//选择的条件添加到list去
+					YiKaoApplication.getConditionsList().set(position, conditions);
+					
+					if (BundleArgsConstants.MAJOR == getIntent().getIntExtra(BundleArgsConstants.INDEX, -1)) {
+						//录取方式
+						intent.setClass(FirstCategoryActivity.this, SecondCategoryActivity.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+						intent.putExtra(BundleArgsConstants.TITLE, conditions.ename);
+						intent.putExtra(BundleArgsConstants.CATEGORY_ID, conditions.id);
+						startActivity(intent);
+					}else {
+//						intent.setClass(FirstCategoryActivity.this, cls)
+						Bundle bundle = new Bundle();
+						bundle.putSerializable(BundleArgsConstants.CONDITIONS, conditions);
+						
+						intent.setClass(FirstCategoryActivity.this, HomeActivity.class);
+						intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						intent.putExtras(bundle);
+						startActivity(intent);
+					}
+					
+				}
+
+			}
+		});
+	}
 
 	/**
 	 * 第一次进入时走onCreate，不会走onNewIntent
@@ -106,6 +116,9 @@ public class FirstCategoryActivity extends BaseActivity {
 	@Override
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
+		
+		getData();
+		onItemListener();
 	}
 
 }

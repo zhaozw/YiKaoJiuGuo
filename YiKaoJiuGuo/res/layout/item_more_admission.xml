@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    
+    
+    <TextView 
+        android:id="@+id/site_item_more_admission_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@drawable/setting_frame"
+        android:text="地区"/>
+    <TextView 
+        android:id="@+id/category_item_more_admission_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+                android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@drawable/setting_frame"
+        android:text="类别"/>
+    <TextView 
+        android:id="@+id/hscore_item_more_admission_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+                android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@drawable/setting_frame"
+        android:text="最高分"/>
+    <TextView 
+        android:id="@+id/lscore_item_more_admission_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+                android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@drawable/setting_frame"
+        android:text="最低分"/>
+
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.kongfuzi.student.ui.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -11,21 +12,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kongfuzi.student.R;
+import com.kongfuzi.student.app.YiKaoApplication;
 import com.kongfuzi.student.bean.Major;
-import com.kongfuzi.student.support.YiKaoApplication;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class MajorListAdapter extends BaseAdapter {
 
 	private Context context;
-	private List<Major> list;
+	private List<Major> list = new ArrayList<Major>();
 
 	private ImageLoader imageLoader;
 	private ViewHolder holder;
 
-	public MajorListAdapter(Context context, List<Major> list) {
+	public MajorListAdapter(Context context) {
 		this.context = context;
-		this.list = list;
 
 		imageLoader = YiKaoApplication.getImageLoaderInstance();
 	}
@@ -37,6 +37,26 @@ public class MajorListAdapter extends BaseAdapter {
 		TextView batch_tv;
 		TextView recruit_count_tv;
 
+	}
+	
+	public void addFirstPageData(List<Major> college_list) {
+		
+		list.clear();
+		
+		if (college_list == null || college_list.isEmpty()) {
+			return;
+		}
+		list.addAll(college_list);
+		notifyDataSetChanged();
+	}
+
+	public void addOtherPageData(List<Major> college_list) {
+		
+		if (college_list == null || college_list.isEmpty()) {
+			return;
+		}
+		list.addAll(college_list);
+		notifyDataSetChanged();
 	}
 
 	@Override

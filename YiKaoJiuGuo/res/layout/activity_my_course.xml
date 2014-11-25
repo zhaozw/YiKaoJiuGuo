@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:orientation="vertical"
+    tools:context=".MyCourseActivity" >
+
+    <TextView
+        android:id="@+id/count_my_course_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:gravity="center_vertical"
+        android:text="我的课程"
+        android:textSize="16sp" />
+
+    <me.maxwin.view.XListView
+        android:id="@+id/list_my_course_xlv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null" />
+
+</LinearLayout>

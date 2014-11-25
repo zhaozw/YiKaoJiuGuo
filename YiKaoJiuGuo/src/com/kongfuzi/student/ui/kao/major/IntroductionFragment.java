@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kongfuzi.student.R;
+import com.kongfuzi.student.support.utils.BundleArgsConstants;
 /**
  * @author LBDL
  * @desc 专业介绍(专业详情)
@@ -16,13 +17,16 @@ import com.kongfuzi.student.R;
  */
 public class IntroductionFragment extends Fragment {
 	
-	private static String content;
-	
 	private TextView content_tv;
 	
 	public static IntroductionFragment getInstance(String body){
-		content = body;
-		return new IntroductionFragment();
+		
+		IntroductionFragment fragment = new IntroductionFragment();
+		Bundle bundle = new Bundle();
+		bundle.putString(BundleArgsConstants.INTRODUCTION, body);
+		fragment.setArguments(bundle);
+		
+		return fragment;
 	}
 	
 	@Override
@@ -36,10 +40,12 @@ public class IntroductionFragment extends Fragment {
 		
 		content_tv = (TextView) view.findViewById(R.id.text_all_production_tv);
 		
-		if (TextUtils.isEmpty(content)) {
+		String bodyString = getArguments().getString(BundleArgsConstants.INTRODUCTION);
+		
+		if (TextUtils.isEmpty(bodyString)) {
 			content_tv.setText("暂无数据");
 		} else {
-			content_tv.setText(content);
+			content_tv.setText(bodyString);
 		}
 		
 	}

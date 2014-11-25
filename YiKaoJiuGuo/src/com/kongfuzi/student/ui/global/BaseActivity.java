@@ -1,11 +1,15 @@
 package com.kongfuzi.student.ui.global;
 
-import com.kongfuzi.lib.volley.RequestQueue;
-import com.kongfuzi.student.support.YiKaoApplication;
-
 import android.app.ActionBar;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+
+import com.kongfuzi.lib.volley.RequestQueue;
+import com.kongfuzi.student.app.YiKaoApplication;
+import com.kongfuzi.student.support.utils.Util;
+import com.kongfuzi.student.ui.view.LoadingDialog;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * @author LBDL
@@ -17,8 +21,9 @@ public class BaseActivity extends FragmentActivity {
 	private ToastDialogFragment toastDialogFragment;
 	
 	protected RequestQueue queue;
+	protected ImageLoader imageLoader;
 	
-	private LoadingDialogFragment loadingDialogFragment;
+	private LoadingDialog loadingDialog;
 	
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -26,12 +31,17 @@ public class BaseActivity extends FragmentActivity {
 		
 		actionBar = getActionBar();
 		queue = YiKaoApplication.getQueueInstance();
-		loadingDialogFragment = LoadingDialogFragment.getInstance();
+		imageLoader = YiKaoApplication.getImageLoaderInstance();
+		loadingDialog = LoadingDialog.getInstance(this);
 		
 	}
 	
 	protected void setTitle(String title) {
 		actionBar.setTitle(title);
+	}
+	
+	protected Boolean isLogin() {
+		return Util.isLogin();
 	}
 	
 	/**
@@ -45,11 +55,11 @@ public class BaseActivity extends FragmentActivity {
 	}
 	
 	protected void showLoadingDialog() {
-		loadingDialogFragment.show(getSupportFragmentManager(), "dialog");
+		loadingDialog.show();
 	}
 	
 	protected void dismissLoadingDialog(){
-		loadingDialogFragment.dismiss();
+		loadingDialog.dismiss();
 	}
 	
 	@Override
@@ -62,7 +72,9 @@ public class BaseActivity extends FragmentActivity {
 	public void onBackPressed() {
 		super.onBackPressed();
 		
-		queue.cancelAll(this);
+		if (loadingDialog.isShowing()) {
+			queue.cancelAll(this);
+		}
 	}
 
 }

@@ -6,13 +6,17 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import android.app.Activity;
+import com.kongfuzi.student.app.YiKaoApplication;
+import com.kongfuzi.student.ui.usercenter.LoginActivity;
+
 import android.content.Context;
+import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * @author LBDL
@@ -84,6 +88,20 @@ public class Util {
 			return true;
 		} else {
 			return false;
+		}
+	}
+	
+	/**
+	 * 判断用户是否登录
+	 * 
+	 * */
+	public static boolean isLogin(){
+		if (YiKaoApplication.getStudentId() == 0) {
+			//没有登录
+			Toast.makeText(YiKaoApplication.getInstance(), "此操作需要登录,请先登录", Toast.LENGTH_SHORT).show();
+			return false;
+		}else {
+			return true;
 		}
 	}
 //	/**

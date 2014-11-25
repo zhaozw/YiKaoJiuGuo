@@ -3,9 +3,9 @@ package com.kongfuzi.student.ui.kao;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -19,7 +19,6 @@ import android.widget.TextView;
 import com.kongfuzi.student.R;
 import com.kongfuzi.student.ui.global.BaseActivity;
 import com.kongfuzi.student.ui.message.MessageFragment;
-import com.kongfuzi.student.ui.usercenter.LoginActivity;
 import com.kongfuzi.student.ui.usercenter.UserCenterFragment;
 
 /**
@@ -44,10 +43,11 @@ public class HomeActivity extends BaseActivity implements OnClickListener {
 	private static final String TAG = "HomeActivity";
 
 	/**
-	 * 回调接口 搜索
+	 * 回调接口 
 	 * */
 	public interface search {
 		public void searchForResult();
+		public void getIntent(Intent intent);
 	}
 
 	@Override
@@ -137,6 +137,12 @@ public class HomeActivity extends BaseActivity implements OnClickListener {
 		}else{
 			return super.dispatchKeyEvent(event);
 		}
+	}
+	
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		KaoFragment.getInstance().getIntent(intent);
 	}
 
 	@Override

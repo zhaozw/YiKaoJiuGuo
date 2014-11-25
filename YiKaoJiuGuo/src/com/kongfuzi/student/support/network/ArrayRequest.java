@@ -18,7 +18,6 @@ import com.kongfuzi.lib.volley.Response;
 import com.kongfuzi.lib.volley.Response.Listener;
 import com.kongfuzi.lib.volley.toolbox.HttpHeaderParser;
 import com.kongfuzi.lib.volley.toolbox.JsonRequest;
-import com.kongfuzi.student.ui.global.LoadingDialogFragment;
 
 /**
  * @author LBDL

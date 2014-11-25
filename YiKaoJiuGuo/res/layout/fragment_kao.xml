@@ -50,8 +50,8 @@
             android:divider="@android:color/transparent"
             android:layout_weight="1" />
 
-        <ListView
-            android:id="@+id/content_kao_lv"
+        <me.maxwin.view.XListView
+            android:id="@+id/content_kao_xlv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3" />

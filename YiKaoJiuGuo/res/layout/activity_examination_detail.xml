@@ -1,0 +1,180 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:background="@color/light_grey"
+    tools:context=".ExaminationDetailActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/setting_frame"
+                android:gravity="center"
+                android:text="学校名称" />
+
+            <TextView
+                android:id="@+id/school_exam_detail_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/setting_frame"
+                android:layout_marginLeft="-2dp"
+                android:gravity="center_vertical"
+                
+                android:paddingLeft="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="-2dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="@drawable/setting_frame"
+                android:text="专业名称" />
+
+            <TextView
+                android:id="@+id/major_exam_detail_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/setting_frame"
+                android:layout_marginLeft="-2dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="-2dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/setting_frame"
+                android:gravity="center"
+                android:text="网上报名" />
+
+            <TextView
+                android:id="@+id/online_exam_detail_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/setting_frame"
+                android:layout_marginLeft="-2dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="-2dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/setting_frame"
+                android:gravity="center"
+                android:text="考点" />
+
+            <TextView
+                android:id="@+id/site_exam_detail_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableRight="@drawable/arrow_right"
+                android:drawablePadding="3dp"
+                android:background="@drawable/setting_frame"
+                android:layout_marginLeft="-2dp"
+                android:gravity="center_vertical"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="-2dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/setting_frame"
+                android:gravity="center"
+                android:text="现场确认" />
+
+            <TextView
+                android:id="@+id/confirm_exam_detail_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/setting_frame"
+                android:layout_marginLeft="-2dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="-2dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/setting_frame"
+                android:gravity="center"
+                android:text="考试时间" />
+
+            <TextView
+                android:id="@+id/date_exam_detail_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/setting_frame"
+                android:layout_marginLeft="-2dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="-2dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/setting_frame"
+                android:gravity="center"
+                android:text="考试范围" />
+
+            <TextView
+                android:id="@+id/range_exam_detail_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/setting_frame"
+                android:layout_marginLeft="-2dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"/>
+        </LinearLayout>
+        
+        
+    </LinearLayout>
+
+</ScrollView>

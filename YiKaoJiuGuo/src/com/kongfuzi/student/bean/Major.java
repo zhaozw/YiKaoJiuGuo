@@ -64,5 +64,11 @@ public class Major {
 	 * */
 	@SerializedName("reg")
 	public int kao_count;
+	
+	/**
+	 * ×¨Òµ½éÉÜ
+	 * */
+	@SerializedName("body")
+	public String body;
 
 }

@@ -19,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:listSelector="@drawable/list_selector"
-        android:divider="@color/light_grey"
+        android:divider="@color/light2_grey"
+        android:dividerHeight="1dp"
          />
 
     <LinearLayout

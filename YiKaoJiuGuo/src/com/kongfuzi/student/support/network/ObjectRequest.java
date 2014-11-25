@@ -32,11 +32,11 @@ public class ObjectRequest<T> extends JsonRequest<T> {
 	/**
 	 * GET«Î«Û
 	 * */
-	public ObjectRequest(String url,Listener<T> listener, Type type) {
+	public ObjectRequest(String url, Listener<T> listener, Type type) {
 		super(Method.GET, url, null, listener, new Error());
 		this.mType = type;
 	}
-	
+
 	/**
 	 * POST«Î«Û
 	 * */
@@ -61,9 +61,20 @@ public class ObjectRequest<T> extends JsonRequest<T> {
 		JsonObject rootObj = jsonParse.parse(resultStr).getAsJsonObject();
 		Log.i(TAG, "response = " + resultStr);
 		T t = null;
-		String json = gson.toJson(rootObj.getAsJsonObject("data"));
 
-		t = gson.fromJson(json, mType);
+		JSONObject jsonObject;
+		try {
+			jsonObject = new JSONObject(resultStr);
+
+			if (jsonObject.optBoolean("success")) {
+
+				String json = gson.toJson(rootObj.getAsJsonObject("data"));
+				t = gson.fromJson(json, mType);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
 		return t;
 	}
 

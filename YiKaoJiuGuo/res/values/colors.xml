@@ -4,6 +4,8 @@
     
     <color name="green">#06C1AE</color>
     <color name="light_grey">#F0EEEE</color>
+    <color name="light2_grey">#8b8c8d</color>
+    <color name="light3_grey">#F0EFED</color>
     <color name="grey">#A3A3A3</color>
     <color name="red">#FF0000</color>
     <color name="light_orange">#FEEFE0</color>

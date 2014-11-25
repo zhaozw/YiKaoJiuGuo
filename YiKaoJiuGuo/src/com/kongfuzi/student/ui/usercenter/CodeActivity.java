@@ -2,7 +2,6 @@ package com.kongfuzi.student.ui.usercenter;
 
 import org.json.JSONObject;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,7 +15,7 @@ import com.kongfuzi.lib.volley.RequestQueue;
 import com.kongfuzi.lib.volley.Response.Listener;
 import com.kongfuzi.lib.volley.toolbox.JsonObjectRequest;
 import com.kongfuzi.student.R;
-import com.kongfuzi.student.support.YiKaoApplication;
+import com.kongfuzi.student.app.YiKaoApplication;
 import com.kongfuzi.student.support.utils.UrlConstants;
 import com.kongfuzi.student.support.utils.Util;
 import com.kongfuzi.student.ui.global.BaseActivity;

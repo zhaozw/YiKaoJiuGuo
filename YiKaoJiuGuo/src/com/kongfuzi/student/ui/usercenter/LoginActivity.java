@@ -13,9 +13,9 @@ import com.google.gson.reflect.TypeToken;
 import com.kongfuzi.lib.volley.RequestQueue;
 import com.kongfuzi.lib.volley.Response.Listener;
 import com.kongfuzi.student.R;
+import com.kongfuzi.student.app.YiKaoApplication;
 import com.kongfuzi.student.bean.User;
 import com.kongfuzi.student.support.MD5;
-import com.kongfuzi.student.support.YiKaoApplication;
 import com.kongfuzi.student.support.network.ObjectRequest;
 import com.kongfuzi.student.support.utils.UrlConstants;
 import com.kongfuzi.student.support.utils.Util;
@@ -41,7 +41,18 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	private String password;
 	private RequestQueue queue;
 
+	/** ´Ó */
+	private static final String ACTION_OPEN_FROM_APP_INNER = "com.kongfuzi.student:LoginActivity";
 	public static final String TAG = "LoginActivity";
+
+	public static Intent newIntent() {
+
+		Intent intent = new Intent(YiKaoApplication.getInstance(), LoginActivity.class);
+		intent.setAction(ACTION_OPEN_FROM_APP_INNER);
+
+		return intent;
+
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -99,16 +110,20 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 			@Override
 			public void onResponse(User user) {
 				dismissLoadingDialog();
-				
+
 				if (user != null) {
+
 					YiKaoApplication.putStudentId(user.id, phone, user.secretkey);
-					startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+					if (!getIntent().getAction().equals(ACTION_OPEN_FROM_APP_INNER)) {
+						startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+					}
 					finish();
-				}else {
-//					toast(user.message);
+				} else {
+					// toast(user.message);
 				}
 			}
-		}, new TypeToken<User>() {}.getType());
+		}, new TypeToken<User>() {
+		}.getType());
 
 		queue.add(request);
 		queue.start();

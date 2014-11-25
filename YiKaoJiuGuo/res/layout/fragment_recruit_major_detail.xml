@@ -83,5 +83,12 @@
             android:layout_marginLeft="5dp"
             android:text="" />
     </LinearLayout>
+    
+    <ProgressBar 
+        android:id="@+id/progress_recruit_major_detail_pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        style="?android:attr/progressBarStyleSmallTitle"/>
 
 </LinearLayout>

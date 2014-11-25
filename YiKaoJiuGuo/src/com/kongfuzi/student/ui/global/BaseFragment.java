@@ -1,20 +1,24 @@
 package com.kongfuzi.student.ui.global;
 
-import com.kongfuzi.lib.volley.RequestQueue;
-import com.kongfuzi.student.support.YiKaoApplication;
-
+import android.app.Dialog;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kongfuzi.lib.volley.RequestQueue;
+import com.kongfuzi.student.app.YiKaoApplication;
+import com.kongfuzi.student.support.utils.Util;
+import com.kongfuzi.student.ui.view.LoadingDialog;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 public class BaseFragment extends Fragment {
 	
 	protected RequestQueue queue;
+	protected ImageLoader imageLoader;
 	
-	private LoadingDialogFragment loadingDialogFragment;
+	private Dialog loadingDialog;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -26,7 +30,12 @@ public class BaseFragment extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 		
 		queue = YiKaoApplication.getQueueInstance();
-		loadingDialogFragment = LoadingDialogFragment.getInstance();
+		imageLoader = YiKaoApplication.getImageLoaderInstance();
+		loadingDialog = LoadingDialog.getInstance(getActivity());
+	}
+	
+	protected Boolean isLogin(){
+		return Util.isLogin();
 	}
 	
 	protected void toast(String message){
@@ -36,11 +45,11 @@ public class BaseFragment extends Fragment {
 	}
 	
 	protected void showLoadingDialog() {
-		loadingDialogFragment.show(getFragmentManager(), "dialog");
+		loadingDialog.show();
 	}
 	
 	protected void dismissLoadingDialog(){
-		loadingDialogFragment.dismiss();
+		loadingDialog.dismiss();
 	}
 
 }
