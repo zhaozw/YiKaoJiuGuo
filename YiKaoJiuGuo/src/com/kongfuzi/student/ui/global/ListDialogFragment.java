@@ -26,7 +26,7 @@ public class ListDialogFragment extends DialogFragment{
 	
 	
 	public interface DialogItemClick{
-		public void dialogItemClickedListener(int position);
+		public void dialogItemClickedListener(Conditions conditions);
 	}
 	
 	
@@ -55,7 +55,7 @@ public class ListDialogFragment extends DialogFragment{
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				dialogItemClick.dialogItemClickedListener(which);
+				dialogItemClick.dialogItemClickedListener(list.get(which));
 			}
 		}).create();
 		

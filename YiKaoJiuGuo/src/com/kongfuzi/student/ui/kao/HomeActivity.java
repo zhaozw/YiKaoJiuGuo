@@ -3,6 +3,7 @@ package com.kongfuzi.student.ui.kao;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.R.integer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,6 +33,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener {
 	private List<ImageView> tabImageList;
 	private List<TextView> tabTextList;
 	private List<Fragment> fragmentList;
+	private boolean[] isTabAdded = {false, false, false};
 	private int[] tabImageSelectedArray = { R.drawable.home_kao_selected, R.drawable.home_msg_selected,
 			R.drawable.home_user_center_selected };
 	private int[] tabImageUnSelectedArray = { R.drawable.home_kao_unselected, R.drawable.home_msg_unselected,
@@ -60,7 +62,6 @@ public class HomeActivity extends BaseActivity implements OnClickListener {
 		// getSlidingMenu().setBehindWidth(300);
 
 		initView();
-
 		setTabSelection(0);
 	}
 
@@ -83,18 +84,11 @@ public class HomeActivity extends BaseActivity implements OnClickListener {
 		for (int i = 0; i < tabLayoutList.size(); i++) {
 			tabLayoutList.get(i).setOnClickListener(this);
 		}
-
-		// 开启一个Fragment事务
 		fragmentList = new ArrayList<Fragment>();
-		fragmentManager = getSupportFragmentManager();
-		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		fragmentList.add(KaoFragment.getInstance());
 		fragmentList.add(MessageFragment.getInstance());
 		fragmentList.add(UserCenterFragment.getInstance());
-		for (int i = 0; i < fragmentList.size(); i++) {
-			transaction.add(R.id.content_main_fl, fragmentList.get(i));
-		}
-		transaction.commit();
+		fragmentManager = getSupportFragmentManager();
 	}
 
 	/**
@@ -103,29 +97,36 @@ public class HomeActivity extends BaseActivity implements OnClickListener {
 	 * @param i
 	 *            每个tab页对应的下标。0:报考 1:消息 2:我的
 	 */
-	private void setTabSelection(int i) {
-		
-
+	private void setTabSelection(int index) {
+		//重置底部tab button状态
+		resetTabButtons();
 		// 开启一个Fragment事务
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-		for (int index = 0; index < tabLayoutList.size(); index++) {
-			Log.i(TAG, "index = " + index);
-			Log.i(TAG, "i = " + i + ", fragment isHidden:" + fragmentList.get(index).isHidden());
-			
-			if (i == index) {
-				tabImageList.get(index).setImageResource(tabImageSelectedArray[index]);
-				tabTextList.get(index).setTextColor(getResources().getColor(R.color.green));
-				transaction.show(fragmentList.get(index));
-			} else {
-				tabImageList.get(index).setImageResource(tabImageUnSelectedArray[index]);
-				tabTextList.get(index).setTextColor(getResources().getColor(R.color.black));
-				transaction.hide(fragmentList.get(index));
-			}
+		hideFragments(transaction);
+		tabImageList.get(index).setImageResource(tabImageSelectedArray[index]);
+		tabTextList.get(index).setTextColor(getResources().getColor(R.color.green));
+		if(!isTabAdded[index]){
+			transaction.add(R.id.content_main_fl, fragmentList.get(index));
+			isTabAdded[index] = true;
 		}
-		curTab = i;
+		
+		transaction.show(fragmentList.get(index));
+		curTab = index;
 		transaction.commit();
 		fragmentManager.executePendingTransactions();
+	}
+	
+	private void hideFragments(FragmentTransaction transaction){
+		for(int i = 0; i < fragmentList.size(); i ++){
+			transaction.hide(fragmentList.get(i));
+		}
+	}
+	
+	private void resetTabButtons(){
+		for(int i = 0; i < tabLayoutList.size(); i ++){
+			tabImageList.get(i).setImageResource(tabImageUnSelectedArray[i]);
+			tabTextList.get(i).setTextColor(getResources().getColor(R.color.black));
+		}
 	}
 
 	@Override
@@ -143,6 +144,7 @@ public class HomeActivity extends BaseActivity implements OnClickListener {
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
 		KaoFragment.getInstance().getIntent(intent);
+		
 	}
 
 	@Override

@@ -56,9 +56,9 @@ public class ExaminationSchedule {
 	@SerializedName("content")
 	public Schedule schedules;
 	
-	/**
-	 *	考点列表
-	 */
-	@SerializedName("add")
-	public List<ExamSite> examSites; 
+//	/**
+//	 *	考点列表
+//	 */
+//	@SerializedName("add")
+//	public List<ExamSite> examSites; 
 }

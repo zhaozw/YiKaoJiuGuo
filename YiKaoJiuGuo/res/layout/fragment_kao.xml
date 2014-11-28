@@ -20,8 +20,8 @@
             android:drawableLeft="@drawable/home_search_icon"
             android:drawablePadding="5dp"
             android:hint="输入大学或专业名称"
-            android:textColor="@color/green_light"
             android:paddingLeft="5dp"
+            android:textColor="@color/green_light"
             android:textSize="14sp" />
 
         <TextView
@@ -46,15 +46,31 @@
             android:id="@+id/conditions_kao_lv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/light_grey"
-            android:divider="@android:color/transparent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:divider="@android:color/transparent" />
 
-        <me.maxwin.view.XListView
-            android:id="@+id/content_kao_xlv"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3" />
+            android:layout_weight="3"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/count_kao_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_grey"
+                android:padding="5dp"
+                android:textSize="14sp" />
+                
+            <me.maxwin.view.XListView
+                android:id="@+id/content_kao_xlv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <include 
+                layout="@layout/empty_imageview"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

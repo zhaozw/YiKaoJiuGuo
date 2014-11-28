@@ -42,6 +42,10 @@ public class CollegeDetailActivity extends FragmentActivity implements OnClickLi
 	private List<TextView> tabList = new ArrayList<TextView>();
 	private List<Fragment> fragmentsList = new ArrayList<Fragment>();
 	
+	
+	/**
+	 * @param id  ¥Û—ßid
+	 * */
 	public static Intent newIntent(int id) {
 		
 		Intent intent = new Intent(YiKaoApplication.getInstance(), CollegeDetailActivity.class);

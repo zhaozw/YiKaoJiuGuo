@@ -1,9 +1,10 @@
 package com.kongfuzi.student.ui.global;
 
+import android.R.anim;
 import android.app.ActionBar;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.MenuItem;
 
 import com.kongfuzi.lib.volley.RequestQueue;
 import com.kongfuzi.student.app.YiKaoApplication;
@@ -25,14 +26,18 @@ public class BaseActivity extends FragmentActivity {
 	
 	private LoadingDialog loadingDialog;
 	
+	
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
-		
-		actionBar = getActionBar();
+		YiKaoApplication.fragmentManager = getSupportFragmentManager();
 		queue = YiKaoApplication.getQueueInstance();
 		imageLoader = YiKaoApplication.getImageLoaderInstance();
 		loadingDialog = LoadingDialog.getInstance(this);
+		
+		actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setDisplayShowHomeEnabled(true);
 		
 	}
 	
@@ -75,6 +80,19 @@ public class BaseActivity extends FragmentActivity {
 		if (loadingDialog.isShowing()) {
 			queue.cancelAll(this);
 		}
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			finish();
+			break;
+
+		default:
+			break;
+		}
+		return true;
 	}
 
 }

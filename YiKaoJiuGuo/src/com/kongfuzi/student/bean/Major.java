@@ -70,5 +70,6 @@ public class Major {
 	 * */
 	@SerializedName("body")
 	public String body;
+	
 
 }

@@ -3,6 +3,7 @@ package com.kongfuzi.student.ui.usercenter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import com.kongfuzi.student.support.network.ObjectRequest;
 import com.kongfuzi.student.support.utils.BundleArgsConstants;
 import com.kongfuzi.student.support.utils.UrlConstants;
 import com.kongfuzi.student.ui.global.BaseActivity;
+import com.kongfuzi.student.ui.kao.HomeActivity;
 
 public class RegisterActivity extends BaseActivity {
 
@@ -29,6 +31,8 @@ public class RegisterActivity extends BaseActivity {
 
 	public static final String ACTION_REGISTER = "com.kongfuzi.student:register";
 	public static final String ACTION_FIND_PWD = "com.kongfuzi.student.find_pwd";
+	
+	private static final String TAG = "RegisterActivity";
 
 	// private RequestQueue queue;
 
@@ -89,7 +93,10 @@ public class RegisterActivity extends BaseActivity {
 				@Override
 				public void onResponse(User response) {
 					if (response != null) {
+						Log.i(TAG, "success");
 						toast("操作成功");
+						startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
+						finish();
 					}else {
 						toast("操作失败");
 					}

@@ -1,13 +1,9 @@
 package com.kongfuzi.student.ui.usercenter.exam;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -16,13 +12,12 @@ import com.google.gson.reflect.TypeToken;
 import com.kongfuzi.lib.volley.Response.Listener;
 import com.kongfuzi.student.R;
 import com.kongfuzi.student.app.YiKaoApplication;
-import com.kongfuzi.student.bean.ExamSite;
 import com.kongfuzi.student.bean.ExaminationSchedule;
 import com.kongfuzi.student.support.network.ObjectRequest;
 import com.kongfuzi.student.support.utils.BundleArgsConstants;
 import com.kongfuzi.student.support.utils.UrlConstants;
 import com.kongfuzi.student.ui.global.BaseActivity;
-import com.kongfuzi.student.ui.kao.major.ExaminationFragment;
+
 
 /**
  * @author LBDL
@@ -39,12 +34,11 @@ public class ExaminationDetailActivity extends BaseActivity implements OnClickLi
 	private TextView date_tv;
 	private TextView range_tv;
 
-	private int major_id;
-	private String major_ename;
-	private int schedule_id;
+	private int majorId;
+	private String majorName;
+	private int scheduleId;
 
 	private Context mContext;
-	private List<ExamSite> site_list = new ArrayList<ExamSite>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,21 +48,27 @@ public class ExaminationDetailActivity extends BaseActivity implements OnClickLi
 		mContext = this;
 
 		Intent intent = getIntent();
-		major_id = intent.getIntExtra("major_id", 0);
-		schedule_id = intent.getIntExtra("schedule_id", 0);
+		majorId = intent.getIntExtra(BundleArgsConstants.MAJOR_ID, 0);
+		majorName = intent.getStringExtra(BundleArgsConstants.MAJOR_NAME);
+		scheduleId = intent.getIntExtra(BundleArgsConstants.SCHEDULE_ID, 0);
+
+		setTitle(majorName);
 
 		initView();
 		getData();
 	}
 
 	/**
+	 * @param collegeString
+	 *            大学名称
 	 * @param major_id
 	 *            专业id
 	 * @param schedule_id
 	 *            日程id
 	 * */
-	public static Intent newIntent(int major_id, int schedule_id) {
+	public static Intent newIntent(String collegeString, int major_id, int schedule_id) {
 		Intent intent = new Intent(YiKaoApplication.getInstance(), ExaminationDetailActivity.class);
+		intent.putExtra(BundleArgsConstants.MAJOR_NAME, collegeString);
 		intent.putExtra(BundleArgsConstants.MAJOR_ID, major_id);
 		intent.putExtra(BundleArgsConstants.SCHEDULE_ID, schedule_id);
 		return intent;
@@ -85,6 +85,8 @@ public class ExaminationDetailActivity extends BaseActivity implements OnClickLi
 		date_tv = (TextView) findViewById(R.id.date_exam_detail_tv);
 		range_tv = (TextView) findViewById(R.id.range_exam_detail_tv);
 
+		site_tv.setOnClickListener(this);
+
 	}
 
 	private void getData() {
@@ -92,10 +94,6 @@ public class ExaminationDetailActivity extends BaseActivity implements OnClickLi
 		if (!isLogin()) {
 			return;
 		}
-
-		Intent intent = getIntent();
-		int majorId = intent.getIntExtra(BundleArgsConstants.MAJOR_ID, 0);
-		int scheduleId = intent.getIntExtra(BundleArgsConstants.SCHEDULE_ID, 0);
 
 		showLoadingDialog();
 		ObjectRequest<ExaminationSchedule> request = new ObjectRequest<ExaminationSchedule>(
@@ -106,7 +104,7 @@ public class ExaminationDetailActivity extends BaseActivity implements OnClickLi
 					public void onResponse(ExaminationSchedule response) {
 						dismissLoadingDialog();
 						if (response != null) {
-							major_ename = response.major;
+							majorName = response.major;
 							school_tv.setText(response.school);
 							major_tv.setText(response.major);
 							online_tv.setText(response.online);
@@ -114,9 +112,7 @@ public class ExaminationDetailActivity extends BaseActivity implements OnClickLi
 							confirm_tv.setText(response.confirm);
 							date_tv.setText(response.date);
 							range_tv.setText(response.range);
-							site_list = response.examSites;
 
-							site_tv.setOnClickListener(ExaminationDetailActivity.this);
 						}
 					}
 				}, new TypeToken<ExaminationSchedule>() {
@@ -125,6 +121,19 @@ public class ExaminationDetailActivity extends BaseActivity implements OnClickLi
 		queue.add(request);
 		queue.start();
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		
+		if (resultCode == Activity.RESULT_OK) {
+			Bundle bundle = data.getExtras();
+			site_tv.setText(bundle.getString(BundleArgsConstants.KAODIAN_NAME));
+			//考点id
+			scheduleId = Integer.parseInt(bundle.getString(BundleArgsConstants.KAODIAN_ID));
+			
+			getData();
+		}
+	}
 
 	@Override
 	public void onClick(View v) {
@@ -132,7 +141,8 @@ public class ExaminationDetailActivity extends BaseActivity implements OnClickLi
 		switch (v.getId()) {
 		// 考点
 		case R.id.site_exam_detail_tv:
-			// siteDialog();
+			Intent intent = KaoDianActivity.newIntent(majorId);
+			startActivityForResult(intent,0);
 			break;
 
 		default:

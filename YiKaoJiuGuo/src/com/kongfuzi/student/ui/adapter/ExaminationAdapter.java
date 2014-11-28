@@ -65,6 +65,7 @@ public class ExaminationAdapter extends BaseAdapter {
 		if (convertView == null) {
 			
 			holder = new ViewHolder();
+			//TODO nullPoint
 			convertView = LayoutInflater.from(context).inflate(R.layout.item_examination, parent, false);
 			
 			holder.title_tv = (TextView) convertView.findViewById(R.id.title_item_examination_tv);

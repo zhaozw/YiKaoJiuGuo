@@ -3,43 +3,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:orientation="vertical" >
-    <LinearLayout
-        android:layout_width="230dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal" >
-
-        <EditText
-            android:id="@+id/code_modifypwd_et"
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:hint="请输入验证码"
-            android:inputType="number"
-            android:paddingLeft="35dp" />
-        
-        <Button 
-            android:id="@+id/code_modifypwd_btn"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:textSize="12sp"/>
-    </LinearLayout>
+    android:background="@color/light_grey"
+    android:orientation="vertical" 
+        android:padding="10dp" >
 
     <EditText
-        android:id="@+id/pwd_modifypwd_et"
-        android:layout_width="230dp"
+        android:id="@+id/old_pwd_modifypwd_et"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:hint="请输入密码"
-        android:layout_marginTop="10dp"
-        android:inputType="textPassword"
-        android:paddingLeft="40dp" />
-
-    <Button
-        android:id="@+id/submit_modifypwd_btn"
-        android:layout_width="230dp"
-        android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal"/>
+        android:background="@color/white"
+        android:hint="旧密码"
+        android:paddingLeft="10dp"
+        android:inputType="textPassword"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/new_pwd_modifypwd_et"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:hint="新密码"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/sub_pwd_modifypwd_et"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:hint="确认密码"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:textSize="16sp" />
     
+    <Button
+        android:id="@+id/modify_modifpwd_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/view_pressed"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:text="确认修改" />
 
 </LinearLayout>

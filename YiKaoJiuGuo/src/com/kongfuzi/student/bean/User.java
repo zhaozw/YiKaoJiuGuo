@@ -47,6 +47,11 @@ public class User {
 	@SerializedName("trip")
 	public String scheduleNum;
 	/**
+	 * 收藏数
+	 * */
+	@SerializedName("collect")
+	public String collectionNum;
+	/**
 	 * 生源地
 	 * */
 	@SerializedName("provincetitle")

@@ -23,13 +23,13 @@
             android:layout_height="wrap_content"
             android:text="college"
             android:textSize="16sp"/>
-        <TextView 
+        <!-- <TextView 
             android:id="@+id/major_item_fragment_kao_right_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/green"
             android:text="major"
-            android:textSize="16sp"/>
+            android:textSize="16sp"/> -->
         <TextView 
             android:id="@+id/batch_item_fragment_kao_right_tv"
             android:layout_width="wrap_content"

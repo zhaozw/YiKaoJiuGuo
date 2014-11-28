@@ -7,7 +7,11 @@ import java.util.List;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Environment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 
 import com.kongfuzi.lib.volley.RequestQueue;
@@ -48,12 +52,14 @@ public class YiKaoApplication extends Application {
 	private static final String MAJOR = "major";
 	private static final String STUDENT_ID = "studentid";
 	private static final String PHONE = "phone";
+	private static final String AVATAR_ID = "avatar_id";
 	private static final String SECRETKEY ="secretkey";
 	
 	private static final String USER_INFO = "user_info";
 	
 	private static String FILE_CACHE;
 	private static final String TAG = "YiKaoApplication";
+	public static FragmentManager fragmentManager;
 	
 	@Override
 	public void onCreate() {
@@ -67,10 +73,30 @@ public class YiKaoApplication extends Application {
 		FILE_CACHE = Environment.getExternalStorageDirectory().getPath() + "yikaojiuguo/cache";
 		
 		initImageLoader();
-		
+		initConditionsList();
+	}
+	
+	/**
+	 * 初始化筛选条件
+	 * 
+	 * */
+	public static void initConditionsList() {
 		for (int i = 0; i < 10; i++) {
 			Conditions conditions = new Conditions();
 			list.add(conditions);
+		}
+	}
+	/**
+	 * 清除筛选条件
+	 * 
+	 * */
+	public static void clearConditionsList() {
+		
+		String[] nameArray = getInstance().getResources().getStringArray(R.array.filter_condition);
+		for (int i = 0; i < 10; i++) {
+			Conditions conditions = new Conditions();
+			conditions.ename = nameArray[i];
+			list.set(i,conditions);
 		}
 	}
 	
@@ -104,6 +130,42 @@ public class YiKaoApplication extends Application {
 		return queue;
 	}
 	
+	/**
+	 * 是否第一次进入
+	 * */
+	public static Boolean isFirstStart() {
+		Boolean isFirstCome = false;
+		
+		isFirstCome = sharedPreferences.getBoolean(FIRST_START, true);
+		return isFirstCome;
+		
+	}
+	
+	public static void putFirstStart() {
+		
+		
+		editor.putBoolean(FIRST_START, false);
+		
+		editor.commit();
+	}
+	
+	 /**
+	   * 获取版本号
+	   * @return 当前应用的版本号
+	   */
+	  public String getVersion() {
+		  String version = null;
+			try {
+				PackageManager manager = this.getPackageManager();
+				PackageInfo info = null;
+				info = manager.getPackageInfo(getPackageName(), 0);
+				version = info.versionName;
+			} catch (NameNotFoundException e) {
+				e.printStackTrace();
+			}
+			return version;
+	}
+	
 	/**保存studentid*/
 	public static void putStudentId(int id,String phone,String secretkey) {
 		
@@ -115,6 +177,15 @@ public class YiKaoApplication extends Application {
 		editor.commit();
 
 	}
+	public static void putStudentId(int id,String secretkey) {
+		
+		Log.i(TAG, "studentId = " + id);
+		editor.putInt(STUDENT_ID, id);
+		editor.putString(SECRETKEY,secretkey);
+		
+		editor.commit();
+		
+	}
 	
 	/**得到 studentId*/
 	public static int getStudentId() {
@@ -122,6 +193,14 @@ public class YiKaoApplication extends Application {
 		int studentId = sharedPreferences.getInt(STUDENT_ID,0);
 		Log.i(TAG, "studentId = " + studentId);
 		return studentId;
+		
+	}
+	/**得到 secretkey*/
+	public static String getSecretkey() {
+		
+		String secretkey = sharedPreferences.getString(SECRETKEY, "");
+		Log.i(TAG, "secretkey = " + secretkey);
+		return secretkey;
 		
 	}
 	
@@ -136,6 +215,57 @@ public class YiKaoApplication extends Application {
 
 	public static List<Conditions> getConditionsList(){
 		return list;
+	}
+	
+	/**得到生源地*/
+	public static int getOriginZone() {
+		
+		int originZoneId = sharedPreferences.getInt(ORIGIN_ZONE,0);
+		Log.i(TAG, "originZoneId = " + originZoneId);
+		return originZoneId;
+		
+	}
+	
+	/**保存生源地*/
+	public static void putOriginZone(int originZoneId) {
+		
+		editor.putInt(ORIGIN_ZONE, originZoneId);
+		Log.i(TAG, "origin zone = " + originZoneId);
+		editor.commit();
+		
+	}
+	
+	/**得到专业类别*/
+	public static int getMajorCategory() {
+		
+		int majorId = sharedPreferences.getInt(MAJOR,0);
+		Log.i(TAG, "majorId = " + majorId);
+		return majorId;
+		
+		
+	}
+	/**保存头像的id*/
+	public static void putAvatarId(String avatarString){
+		editor.putString(AVATAR_ID, avatarString);
+		Log.i(TAG, "avatar id = " + avatarString);
+		editor.commit();
+	}
+	
+	/**获取头像的id*/
+	public static String getAvatarId(){
+		String avatarString = sharedPreferences.getString(AVATAR_ID, "");
+		Log.i(TAG, "avatarString = " + avatarString);
+		
+		return avatarString;
+		
+	}
+	public static void putMajor(int id){
+		
+		
+		editor.putInt(MAJOR, id);
+		
+		editor.commit();
+		
 	}
 	
 //	/**

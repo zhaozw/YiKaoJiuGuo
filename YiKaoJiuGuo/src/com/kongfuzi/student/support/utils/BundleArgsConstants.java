@@ -15,6 +15,10 @@ public class BundleArgsConstants {
 	public static final int PROPERTY = 5;
 	public static final int ORIGIN_SITE = 6;
 	
+	
+	
+	public static final String KAODIAN_ID = "kaodian_id";
+	public static final String KAODIAN_NAME = "kaodian_name";
 	public static final String LIST = "list";
 	public static final String CATEGORY_ID = "category_id";
 	public static final String CONDITIONS = "conditions";
@@ -29,6 +33,7 @@ public class BundleArgsConstants {
 	public static final String PHONE = "phone";
 	public static final String CODE = "code";
 	public static final String INTRODUCTION = "introduction";
+	public static final String ERROR_MESSAGE = "error";
 	
 //	public static final String MAJOR_ID = "";
 //	public static final String MAJOR_ID = "";

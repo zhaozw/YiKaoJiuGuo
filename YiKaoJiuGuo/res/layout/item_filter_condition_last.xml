@@ -2,22 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    android:orientation="horizontal"  >
-    
-        <CheckBox
-            android:id="@+id/check_item_filter_condition_last_rb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="30dp"
-            android:layout_marginLeft="10dp"
-            android:button="@drawable/checkbox_selector"
-            android:gravity="center_vertical"
-            android:textColor="@color/white"
-        android:text="省外按联考录取大学"
-            android:textSize="14sp" />
+    android:orientation="vertical">
 
+    <CheckBox
+        android:id="@+id/check_item_filter_condition_last_rb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:button="@drawable/checkbox_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="30dp"
+        android:text="省外按联考录取大学"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
     
-    
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"/>
+
 
 </LinearLayout>

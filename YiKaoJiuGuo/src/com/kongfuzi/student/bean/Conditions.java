@@ -16,6 +16,7 @@ public class Conditions implements Serializable{
 	
 	@SerializedName("ename")
 	public String ename;
+	
 /*	//Ã»ÓÃµÄ
 	@SerializedName("evalue")
 	public int evalue;

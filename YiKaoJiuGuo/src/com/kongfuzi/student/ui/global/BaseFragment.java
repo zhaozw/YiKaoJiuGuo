@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.kongfuzi.lib.volley.RequestQueue;
+import com.kongfuzi.student.R;
 import com.kongfuzi.student.app.YiKaoApplication;
 import com.kongfuzi.student.support.utils.Util;
 import com.kongfuzi.student.ui.view.LoadingDialog;
@@ -20,9 +22,17 @@ public class BaseFragment extends Fragment {
 	
 	private Dialog loadingDialog;
 	
+	protected ImageView empty_iv;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return super.onCreateView(inflater, container, savedInstanceState);
+	}
+	
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		empty_iv = (ImageView) view.findViewById(R.id.empty_kao_iv);
 	}
 	
 	@Override
@@ -32,6 +42,7 @@ public class BaseFragment extends Fragment {
 		queue = YiKaoApplication.getQueueInstance();
 		imageLoader = YiKaoApplication.getImageLoaderInstance();
 		loadingDialog = LoadingDialog.getInstance(getActivity());
+		
 	}
 	
 	protected Boolean isLogin(){

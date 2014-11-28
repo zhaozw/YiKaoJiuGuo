@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.Map;
 
+import me.maxwin.view.XListView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,7 +17,9 @@ import com.google.gson.JsonParser;
 import com.kongfuzi.lib.volley.NetworkResponse;
 import com.kongfuzi.lib.volley.ParseError;
 import com.kongfuzi.lib.volley.Response;
+import com.kongfuzi.lib.volley.Response.ErrorListener;
 import com.kongfuzi.lib.volley.Response.Listener;
+import com.kongfuzi.lib.volley.VolleyError;
 import com.kongfuzi.lib.volley.toolbox.HttpHeaderParser;
 import com.kongfuzi.lib.volley.toolbox.JsonRequest;
 
@@ -28,7 +32,10 @@ public class ArrayRequest<T> extends JsonRequest<T> {
 
 	private Type mType = null;
 	private static final String TAG = "ArrayRequest";
-
+	public String errorMessage = null;
+	public static String count = null;
+	
+	
 	/**
 	 * GET请求
 	 * */
@@ -38,10 +45,27 @@ public class ArrayRequest<T> extends JsonRequest<T> {
 	}
 	
 	/**
+	 * GET请求
+	 * */
+	public ArrayRequest(String url,Listener<T> listener,Type type, XListView mListView) {
+		super(Method.GET, url, null, listener,new Error(mListView));
+		this.mType = type;
+	}
+	
+	
+	/**
 	 * POST请求
 	 * */
 	public ArrayRequest(String url, Map<String, String> body, Listener<T> listener,Type type) {
 		super(Method.POST, url, body, listener,new Error());
+		this.mType = type;
+	}
+	
+	/**
+	 * POST请求
+	 * */
+	public ArrayRequest(String url, Map<String, String> body, Listener<T> listener,Type type, XListView mListView) {
+		super(Method.POST, url, body, listener,new Error(mListView));
 		this.mType = type;
 	}
 
@@ -52,10 +76,13 @@ public class ArrayRequest<T> extends JsonRequest<T> {
 							mType), HttpHeaderParser.parseCacheHeaders(response));
 		} catch (UnsupportedEncodingException e) {
 			return Response.error(new ParseError(e));
+		} catch (VolleyError e) {
+			// TODO Auto-generated catch block
+			return Response.error(e);
 		}
 	}
 
-	private T parseStrToNoteArray(String resultStr, Type mType) {
+	private T parseStrToNoteArray(String resultStr, Type mType) throws VolleyError {
 		Gson gson = new Gson();
 		JsonParser jsonParse = new JsonParser();
 		JsonObject rootObj = jsonParse.parse(resultStr).getAsJsonObject();
@@ -67,10 +94,8 @@ public class ArrayRequest<T> extends JsonRequest<T> {
 				String json = null;
 				json = gson.toJson(rootObj.getAsJsonArray("data"));
 				t = gson.fromJson(json, mType);
-
 			} else {
-				jsonObject.optString("message");
-
+				throw new VolleyError(jsonObject.optString("message"));	
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();

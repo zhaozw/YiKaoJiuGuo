@@ -16,10 +16,15 @@ import com.kongfuzi.student.app.YiKaoApplication;
 import com.kongfuzi.student.bean.Major;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+/**
+ * @author LBDL
+ * @desc 专业列表 (现在是大学列表)
+ *
+ */
 public class MajorListAdapter extends BaseAdapter {
 
 	private Context context;
-	private List<Major> list = new ArrayList<Major>();
+	public List<Major> list = new ArrayList<Major>();
 
 	private ImageLoader imageLoader;
 	private ViewHolder holder;
@@ -33,17 +38,16 @@ public class MajorListAdapter extends BaseAdapter {
 	class ViewHolder {
 		ImageView avatar_iv;
 		TextView college_tv;
-		TextView major_tv;
+//		TextView major_tv;
 		TextView batch_tv;
 		TextView recruit_count_tv;
-
 	}
 	
 	public void addFirstPageData(List<Major> college_list) {
 		
 		list.clear();
 		
-		if (college_list == null || college_list.isEmpty()) {
+		if (college_list == null) {
 			return;
 		}
 		list.addAll(college_list);
@@ -59,6 +63,11 @@ public class MajorListAdapter extends BaseAdapter {
 		notifyDataSetChanged();
 	}
 
+	@Override
+	public boolean isEmpty() {
+		return list.isEmpty() ? true : false;
+	}
+	
 	@Override
 	public int getCount() {
 		return list.size();
@@ -85,7 +94,7 @@ public class MajorListAdapter extends BaseAdapter {
 			
 			holder.avatar_iv = (ImageView) convertView.findViewById(R.id.avatar_item_kao_right_iv);
 			holder.college_tv = (TextView) convertView.findViewById(R.id.college_item_fragment_kao_right_tv);
-			holder.major_tv = (TextView) convertView.findViewById(R.id.major_item_fragment_kao_right_tv);
+//			holder.major_tv = (TextView) convertView.findViewById(R.id.major_item_fragment_kao_right_tv);
 			holder.batch_tv = (TextView) convertView.findViewById(R.id.batch_item_fragment_kao_right_tv);
 			holder.recruit_count_tv = (TextView) convertView.findViewById(R.id.recruit_count_item_fragment_kao_right_tv);
 			
@@ -96,10 +105,10 @@ public class MajorListAdapter extends BaseAdapter {
 		}
 		
 		imageLoader.displayImage(major.avatar, holder.avatar_iv);
-		holder.college_tv.setText(major.college);
-		holder.major_tv.setText("(" + major.major + ")");
+		holder.college_tv.setText(major.major);
+//		holder.major_tv.setText("(" + major.major + ")");
 		holder.batch_tv.setText(major.batch);
-		holder.recruit_count_tv.setText("招生人数:" + major.recruit_count);
+		holder.recruit_count_tv.setText("招生人数:" + major.recruit_count + "人");
 		
 		
 		return convertView;

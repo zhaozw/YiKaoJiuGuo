@@ -3,6 +3,7 @@ package com.kongfuzi.student.ui.usercenter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -114,6 +115,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 				if (user != null) {
 
 					YiKaoApplication.putStudentId(user.id, phone, user.secretkey);
+					Log.i(TAG, "genIntent() = " + getIntent()); 
 					if (!getIntent().getAction().equals(ACTION_OPEN_FROM_APP_INNER)) {
 						startActivity(new Intent(LoginActivity.this, HomeActivity.class));
 					}

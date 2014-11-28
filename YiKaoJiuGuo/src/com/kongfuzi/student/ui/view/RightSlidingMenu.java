@@ -76,14 +76,16 @@ public class RightSlidingMenu extends SlidingMenu implements OnClickListener,OnI
 		switch (v.getId()) {
 		//Çå³ý
 		case R.id.clear_sliding_menu_right_btn:
-			
+			YiKaoApplication.clearConditionsList();
+			adapter.list = YiKaoApplication.getConditionsList();
+			adapter.notifyDataSetChanged();
 			break;
 		//È·¶¨
 		case R.id.submit_sliding_menu_right_btn:
 			Log.i(TAG, "score = " + YiKaoApplication.getConditionsList().get(0).id);
 			Log.i(TAG, "other = " + YiKaoApplication.getConditionsList().get(7).id);
 			showContent();
-			KaoFragment.getInstance().getRightData();
+			KaoFragment.getInstance().getRightData(UrlConstants.getMajorListUrl(""));
 			break;
 
 		default:

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +54,7 @@ public class FilterAdapter extends BaseAdapter {
 	
 	@Override
 	public int getCount() {
-		return nameArray.length;
+		return 8;
 	}
 	
 	@Override
@@ -66,9 +68,31 @@ public class FilterAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.item_filter_condition_first, parent, false);
 			
 			TextView name_tv = (TextView) convertView.findViewById(R.id.name_item_filter_conditions_first_tv);
-			EditText content_et = (EditText) convertView.findViewById(R.id.content_item_filter_conditions_first_et);
+			final EditText content_et = (EditText) convertView.findViewById(R.id.content_item_filter_conditions_first_et);
 			
 			name_tv.setText(nameArray[position]);
+			
+			content_et.addTextChangedListener(new TextWatcher() {
+				
+				@Override
+				public void onTextChanged(CharSequence s, int start, int before, int count) {
+					
+				}
+				
+				@Override
+				public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+					
+				}
+				
+				@Override
+				public void afterTextChanged(Editable s) {
+					//设置分数 设置  list item 的 id  ename = "估分"
+					Conditions conditions = new Conditions();
+					conditions.ename = nameArray[0];
+					conditions.id = Integer.parseInt(content_et.getText().toString());
+					YiKaoApplication.getConditionsList().set(0, conditions);
+				}
+			});
 			
 			content_et.setOnEditorActionListener(new OnEditorActionListener() {
 				
@@ -92,7 +116,7 @@ public class FilterAdapter extends BaseAdapter {
 			
 		}
 		//最后一项
-		else if (position == nameArray.length - 1) {
+		else if (position == 7) {
 			convertView = inflater.inflate(R.layout.item_filter_condition_last, parent,false);
 			
 			CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.check_item_filter_condition_last_rb);
@@ -103,12 +127,15 @@ public class FilterAdapter extends BaseAdapter {
 				
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					
+					Conditions conditions = new Conditions();
+					conditions.ename = nameArray[7];
 					if (isChecked) {
-						Conditions conditions = new Conditions();
-						conditions.ename = nameArray[7];
 						conditions.id = 1;
-						YiKaoApplication.getConditionsList().set(7, conditions);
+					}else {
+						conditions.id = 0;
 					}
+					YiKaoApplication.getConditionsList().set(7, conditions);
 				}
 			});
 			

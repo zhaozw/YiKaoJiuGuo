@@ -2,12 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_grey"
     android:orientation="vertical" >
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/green"
+        android:textColor="@color/white"
+        android:text="消息"
+        android:textSize="18sp"
+        android:gravity="center"/>
 
     <me.maxwin.view.XListView
         android:id="@+id/msg_message_xlv"
         android:layout_width="match_parent"
         android:layout_height="match_parent" 
+        android:listSelector="@drawable/view3_pressed"
         />
 
 </LinearLayout>

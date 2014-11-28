@@ -47,7 +47,7 @@ public class KaoDianAdapter extends BaseAdapter {
 
 	@Override
 	public Object getItem(int position) {
-		return null;
+		return list.size() ==0 ? null : list.get(position);
 	}
 
 	@Override

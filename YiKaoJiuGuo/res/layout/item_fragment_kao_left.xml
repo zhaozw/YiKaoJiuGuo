@@ -3,15 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:descendantFocusability="blocksDescendants"
+    android:background="@color/light_grey"
     android:gravity="center" >
 
     <TextView
         android:id="@+id/text_item_kao_left_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="dfa"
         android:textSize="14sp"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="@color/grey" />
+        android:paddingBottom="10dp" 
+        android:textColor="@color/home_left_selector"/>
 
 </LinearLayout>

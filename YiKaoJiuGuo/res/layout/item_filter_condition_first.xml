@@ -21,6 +21,8 @@
         android:layout_height="30dp"
         android:background="@drawable/conditions_button"
         android:textSize="14sp"
+        android:textColor="@color/white"
+        android:paddingLeft="5dp"
         android:inputType="number"
         android:hint="满分 : 750分"/>
     

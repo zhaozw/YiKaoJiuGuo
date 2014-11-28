@@ -2,10 +2,10 @@ package com.kongfuzi.student.ui.usercenter;
 
 import java.util.List;
 
-import me.maxwin.view.XListView;
-
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.reflect.TypeToken;
@@ -27,12 +27,13 @@ import com.umeng.analytics.MobclickAgent;
 public class MyCourseActivity extends BaseActivity {
 
 	private TextView count_tv;
-	private XListView list_xlv;
+	private ListView list_lv;
+	private ImageView empty_iv;
 
 	private Context context;
 	private CourseAdapter adapter;
 	// 是否正在加载
-	private Boolean isLoading = false;
+//	private Boolean isLoading = false;
 	public static final String TAG = "MyCourseActivity";
 
 	@Override
@@ -43,20 +44,11 @@ public class MyCourseActivity extends BaseActivity {
 		context = this;
 
 		count_tv = (TextView) findViewById(R.id.count_my_course_tv);
-		list_xlv = (XListView) findViewById(R.id.list_my_course_xlv);
+		list_lv = (ListView) findViewById(R.id.list_my_course_lv);
+		empty_iv = (ImageView) findViewById(R.id.empty_kao_iv);
 
 		adapter = new CourseAdapter(context);
-		list_xlv.setAdapter(adapter);
-
-		if (isLoading == false) {
-			isLoading = true;
-			// 开始刷新
-			list_xlv.startRefresh();
-		} else {
-			list_xlv.NotRefreshAtBegin();
-		}
-
-		isLoading = true;
+		list_lv.setAdapter(adapter);
 
 		getData();
 
@@ -80,13 +72,17 @@ public class MyCourseActivity extends BaseActivity {
 			@Override
 			public void onResponse(List<Course> response) {
 				
-				if (!response.isEmpty() && response != null) {
+				if (response != null) {
 					count_tv.setText("我要考的" + response.size() + "门课程");
-					adapter.setList(response);
+					if (response.isEmpty()) {
+						list_lv.setEmptyView(empty_iv);
+					}else {
+						adapter.setList(response);
+						
+					}
 				}
 			}
-		}, new TypeToken<List<Course>>() {
-		}.getType());
+		}, new TypeToken<List<Course>>() {}.getType());
 
 		queue.add(request);
 		queue.start();

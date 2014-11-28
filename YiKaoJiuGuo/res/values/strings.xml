@@ -7,11 +7,16 @@
     <string name="title_activity_login">登录</string>
     <string name="title_activity_register">注册</string>
     <string name="title_activity_major_detail">专业详情</string>
+    <string name="title_activity_my_collection">我的收藏</string>
     <string name="title_activity_college_detail">大学详情</string>
-    <string name="title_activity_first_category">FirstCategoryActivity</string>
+    <string name="title_activity_first_category"></string>
+    <string name="title_activity_my_volunteer">我的志愿</string>
     <string name="title_activity_examination">考试日程</string>
     <string name="title_activity_my_course">我的课程</string>
-    <string name="title_activity_second_category">SecondCategoryActivity</string>
+    <string name="title_activity_second_category"></string>
+    <string name="title_activity_user_info">个人信息</string>
+    <string name="title_activity_about">关于我们</string>
+    <string name="title_activity_modify_password">修改密码</string>
     <string name="title_activity_kao_dian">考点</string>
 
 </resources>

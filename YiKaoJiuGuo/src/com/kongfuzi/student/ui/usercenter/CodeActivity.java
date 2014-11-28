@@ -36,8 +36,8 @@ public class CodeActivity extends BaseActivity implements OnClickListener {
 
 	private String phone;
 	private String code;
-	private RequestQueue queue;
-	
+	private String actionString;
+
 	public static Intent newIntent(String action) {
 		Intent intent = new Intent(YiKaoApplication.getInstance(), CodeActivity.class);
 		intent.setAction(action);
@@ -50,12 +50,12 @@ public class CodeActivity extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_code);
-
-		queue = YiKaoApplication.getQueueInstance();
+		
+		actionString = getIntent().getAction();
 
 		initView();
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -77,8 +77,9 @@ public class CodeActivity extends BaseActivity implements OnClickListener {
 	private void confirmRegisterInfo() {
 
 		code = code_et.getText().toString();
+		phone = phone_et.getText().toString();
 
-		if ((!TextUtils.isEmpty(phone) && (!TextUtils.isEmpty(code)))) {
+		if (!TextUtils.isEmpty(phone)) {
 
 			if (Util.isCellphone(phone)) {
 				getCode();
@@ -86,14 +87,25 @@ public class CodeActivity extends BaseActivity implements OnClickListener {
 				toast("手机号格式不对");
 			}
 		} else {
-			toast("手机号或者验证码为空");
+			toast("手机号不能为空");
 		}
 	}
 
 	/** 获取注册码 */
 	public void getCode() {
-		JsonObjectRequest request = new JsonObjectRequest(Method.GET, UrlConstants.GET_CODE + "?phone=" + phone, null,
-				new Listener<JSONObject>() {
+		
+		String urlString = null;
+		
+		if (actionString.equals(RegisterActivity.ACTION_FIND_PWD)) {
+			//找回密码
+			urlString = UrlConstants.GET_CODE + "&type=" + 2 + "&phone=" + phone;
+		}else if (actionString.equals(RegisterActivity.ACTION_REGISTER)) {
+			//注册
+			urlString = UrlConstants.GET_CODE + "&type=" + 1 + "&phone=" + phone;
+		}
+		
+		
+		JsonObjectRequest request = new JsonObjectRequest(Method.GET,urlString, null,new Listener<JSONObject>() {
 
 					@Override
 					public void onResponse(JSONObject response) {
@@ -115,21 +127,20 @@ public class CodeActivity extends BaseActivity implements OnClickListener {
 
 		// 获取手机验证码
 		case R.id.code_register_btn:
-			phone = phone_et.getText().toString();
 			confirmRegisterInfo();
 			break;
 
 		// 下一步
 		case R.id.submit_register_btn:
-			
-			String actionString = getIntent().getAction();
+
 			String codeString = code_et.getText().toString();
-			
+
 			if (!TextUtils.isEmpty(codeString)) {
-				
-				Intent intent = RegisterActivity.newIntent(phone, codeString,actionString);
+
+				Intent intent = RegisterActivity.newIntent(phone, codeString, actionString);
 				startActivity(intent);
-			}else {
+				finish();
+			} else {
 				toast("验证码为空");
 			}
 			break;

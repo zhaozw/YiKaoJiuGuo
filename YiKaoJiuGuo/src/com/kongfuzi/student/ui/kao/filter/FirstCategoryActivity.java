@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -28,6 +29,8 @@ import com.kongfuzi.student.ui.kao.HomeActivity;
 public class FirstCategoryActivity extends BaseActivity {
 
 	private ListView list_lv;
+	
+	private static final String TAG = "FirstCategoryActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,10 @@ public class FirstCategoryActivity extends BaseActivity {
 			@Override
 			public void onResponse(List<Conditions> response) {
 				dismissLoadingDialog();
+				Conditions conditions = new Conditions();
+				conditions.id = 0;
+				conditions.ename = "全部";
+				response.add(0, conditions);
 				list_lv.setAdapter(new CategoryAdapter(FirstCategoryActivity.this, response));
 
 			}
@@ -83,31 +90,41 @@ public class FirstCategoryActivity extends BaseActivity {
 					
 					Intent intent = new Intent();
 					Conditions conditions = (Conditions) object;
+					Log.i(TAG, "position = " + getIntent().getIntExtra(BundleArgsConstants.INDEX, 0));
 					//选择的条件添加到list去
-					YiKaoApplication.getConditionsList().set(position, conditions);
+					YiKaoApplication.getConditionsList().set(getIntent().getIntExtra(BundleArgsConstants.INDEX, 0), conditions);
 					
 					if (BundleArgsConstants.MAJOR == getIntent().getIntExtra(BundleArgsConstants.INDEX, -1)) {
 						//录取方式
-						intent.setClass(FirstCategoryActivity.this, SecondCategoryActivity.class);
-						intent.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-						intent.putExtra(BundleArgsConstants.TITLE, conditions.ename);
-						intent.putExtra(BundleArgsConstants.CATEGORY_ID, conditions.id);
-						startActivity(intent);
+						if (position == 0) {
+							backHome(conditions);
+						} else {
+							intent.setClass(FirstCategoryActivity.this, SecondCategoryActivity.class);
+							intent.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+							intent.putExtra(BundleArgsConstants.TITLE, conditions.ename);
+							intent.putExtra(BundleArgsConstants.CATEGORY_ID, conditions.id);
+							startActivity(intent);
+						}
 					}else {
-//						intent.setClass(FirstCategoryActivity.this, cls)
-						Bundle bundle = new Bundle();
-						bundle.putSerializable(BundleArgsConstants.CONDITIONS, conditions);
-						
-						intent.setClass(FirstCategoryActivity.this, HomeActivity.class);
-						intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-						intent.putExtras(bundle);
-						startActivity(intent);
+						backHome(conditions);
 					}
 					
 				}
 
 			}
 		});
+	}
+	
+	private void backHome(Conditions conditions) {
+		Intent intent = new Intent();
+		Bundle bundle = new Bundle();
+		bundle.putSerializable(BundleArgsConstants.CONDITIONS, conditions);
+		
+		intent.setClass(this, HomeActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intent.putExtras(bundle);
+		startActivity(intent);
+
 	}
 
 	/**

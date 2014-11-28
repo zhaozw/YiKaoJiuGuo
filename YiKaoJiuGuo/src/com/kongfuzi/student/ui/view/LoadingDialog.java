@@ -25,10 +25,7 @@ public class LoadingDialog extends Dialog{
     private static LoadingDialog dialog = null;
     
     public static LoadingDialog getInstance(Context context){
-    	
-    	if (dialog  == null) {
-    		dialog = new LoadingDialog(context);
-		}
+    	dialog = new LoadingDialog(context);
     	return dialog;
     	
     }

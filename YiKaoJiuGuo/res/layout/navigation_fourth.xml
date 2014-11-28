@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/navigation_third"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="亲,请选择你的专业"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        android:textSize="22sp"/>
+    
+    <ListView 
+        android:id="@+id/list_navigation_fourth_lv"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:divider="@android:color/transparent"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"/>
+    
+    <!-- <Button 
+        android:id="@+id/start_navigation_fourth_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="立即体验"/> -->
+
+</LinearLayout>

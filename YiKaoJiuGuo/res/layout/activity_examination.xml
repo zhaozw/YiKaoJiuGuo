@@ -20,6 +20,8 @@
         android:layout_height="match_parent"
         android:dividerHeight="3dp"
         android:divider="@color/light2_grey"/>
+    
+    <include layout="@layout/empty_imageview"/>
 
 
 </LinearLayout>

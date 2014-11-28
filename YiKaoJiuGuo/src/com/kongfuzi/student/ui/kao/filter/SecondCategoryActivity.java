@@ -1,8 +1,8 @@
 package com.kongfuzi.student.ui.kao.filter;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import android.R.integer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -33,10 +33,15 @@ public class SecondCategoryActivity extends BaseActivity implements DialogItemCl
 
 	private int MajorId;
 	private ListView list_lv;
+	
+	//一级分类ename
+	private String titleString;
+	//二级分类ename
+	private String secondTitleString;
 
 	// 二级分类
-	private Conditions conditions = new Conditions();
-	private List<Conditions> list = new ArrayList<Conditions>();
+//	private Conditions conditions = new Conditions();
+//	private List<Conditions> list = new ArrayList<Conditions>();
 
 	// private List<Conditions> thirdList = new ArrayList<Conditions>();
 
@@ -44,8 +49,9 @@ public class SecondCategoryActivity extends BaseActivity implements DialogItemCl
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_first_category);
-
+		
 		getIntentData();
+		//二级分类
 		getData(0, UrlConstants.SECOND_MAJOR_CATEGORY + "&id=" + MajorId);
 		onItemClickListener();
 
@@ -53,8 +59,9 @@ public class SecondCategoryActivity extends BaseActivity implements DialogItemCl
 
 	private void getIntentData() {
 		Intent intent = getIntent();
+		titleString = intent.getStringExtra(BundleArgsConstants.TITLE);
 		MajorId = intent.getIntExtra(BundleArgsConstants.CATEGORY_ID, 0);
-		setTitle(intent.getStringExtra(BundleArgsConstants.TITLE));
+		setTitle(titleString);
 	}
 
 	private void getData(final int index, String urlString) {
@@ -64,12 +71,20 @@ public class SecondCategoryActivity extends BaseActivity implements DialogItemCl
 
 					@Override
 					public void onResponse(List<Conditions> response) {
+						
 						dismissLoadingDialog();
-						list = response;
+						
+						Conditions conditions = new Conditions();
+						conditions.id = 0;
+						conditions.ename = "全部";
+						response.add(0, conditions);
+						
 						if (index == 0) {
+							//二级分类
 							list_lv.setAdapter(new CategoryAdapter(SecondCategoryActivity.this, response));
 
 						} else if (index == 1) {
+							//三级分类
 							ListDialogFragment fragment = ListDialogFragment.getInstance(response);
 							fragment.show(getSupportFragmentManager(), "dialog");
 						}
@@ -82,6 +97,9 @@ public class SecondCategoryActivity extends BaseActivity implements DialogItemCl
 		queue.start();
 	}
 
+	/**
+	 * 二级分类的item
+	 * */
 	private void onItemClickListener() {
 
 		list_lv = (ListView) findViewById(R.id.list_first_category_lv);
@@ -91,12 +109,25 @@ public class SecondCategoryActivity extends BaseActivity implements DialogItemCl
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-				conditions = list.get(position);
+				Object object = parent.getItemAtPosition(position);
+				
+				if (object !=null && object instanceof Conditions) {
+					Conditions conditions = (Conditions) object;
+					secondTitleString = conditions.ename;
+					// 二级分类Conditions set 在 list
+					YiKaoApplication.getConditionsList().set(8, conditions);
+					
+					if (position == 0) {
+						//全部
+						conditions.ename = titleString;
+						backHome(0,conditions);
+						
+					} else {
+						getData(1,UrlConstants.THIRD_MAJOR_CATEGORY + "&id=" + conditions.id);
+					}
+					
+				}
 
-				// 二级分类Conditions set 在 list
-				YiKaoApplication.getConditionsList().set(7, conditions);
-
-				getData(1,UrlConstants.THIRD_MAJOR_CATEGORY + "&id=" + conditions.id);
 
 				// Intent intent = new Intent(SecondCategoryActivity.this,
 				// PopupWindowActivity.class);
@@ -105,6 +136,21 @@ public class SecondCategoryActivity extends BaseActivity implements DialogItemCl
 
 			}
 		});
+	}
+	
+	/**
+	 * 返回首页
+	 * 
+	 * */
+	private void backHome(int index,Conditions conditions) {
+		Intent intent = new Intent(this, HomeActivity.class);
+		Bundle bundle = new Bundle();
+		
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		bundle.putSerializable(BundleArgsConstants.CONDITIONS, conditions);
+		bundle.putInt("index", index);
+		intent.putExtras(bundle);
+		startActivity(intent);
 	}
 
 	/**
@@ -125,18 +171,16 @@ public class SecondCategoryActivity extends BaseActivity implements DialogItemCl
 	 * @param position  
 	 * */
 	@Override
-	public void dialogItemClickedListener(int position) {
+	public void dialogItemClickedListener(Conditions c) {
 		//三级分类Conditions set 在 list
-		Conditions conditions = list.get(position);
-		YiKaoApplication.getConditionsList().set(8, conditions);
+		Conditions conditions = c;
+		//如果点击的是全部 返回二级分类的ename
+		if (conditions.ename.equals("全部")) {
+			conditions.ename = secondTitleString;
+		}
+		YiKaoApplication.getConditionsList().set(9, conditions);
 		
-		Intent intent = new Intent(this, HomeActivity.class);
-		Bundle bundle = new Bundle();
-		
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		bundle.putSerializable(BundleArgsConstants.CONDITIONS, conditions);
-		intent.putExtras(bundle);
-		startActivity(intent);
+		backHome(1,conditions);
 	}
 
 }
