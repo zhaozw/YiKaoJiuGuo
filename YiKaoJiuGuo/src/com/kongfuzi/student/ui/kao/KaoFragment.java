@@ -38,12 +38,12 @@ import com.kongfuzi.student.R;
 import com.kongfuzi.student.app.YiKaoApplication;
 import com.kongfuzi.student.bean.Conditions;
 import com.kongfuzi.student.bean.KaoMajor;
-import com.kongfuzi.student.bean.Major;
+import com.kongfuzi.student.bean.College;
 import com.kongfuzi.student.support.network.ArrayRequest;
 import com.kongfuzi.student.support.utils.BundleArgsConstants;
 import com.kongfuzi.student.support.utils.UrlConstants;
 import com.kongfuzi.student.ui.adapter.LeftKaoAdapter;
-import com.kongfuzi.student.ui.adapter.MajorListAdapter;
+import com.kongfuzi.student.ui.adapter.CollegeListAdapter;
 import com.kongfuzi.student.ui.global.BaseFragment;
 import com.kongfuzi.student.ui.view.RightSlidingMenu;
 
@@ -65,7 +65,7 @@ public class KaoFragment extends BaseFragment implements OnItemClickListener, Ho
 	private ImageView empty_iv;
 
 	private int page = 0;
-	private MajorListAdapter adapter = null;
+	private CollegeListAdapter adapter = null;
 	private static KaoFragment mInstance = null;
 	private List<Conditions> leftList = new ArrayList<Conditions>();
 
@@ -101,7 +101,7 @@ public class KaoFragment extends BaseFragment implements OnItemClickListener, Ho
 		count_tv = (TextView) view.findViewById(R.id.count_kao_tv);
 		empty_iv = (ImageView) view.findViewById(R.id.empty_kao_iv);
 
-		adapter = new MajorListAdapter(getActivity());
+		adapter = new CollegeListAdapter(getActivity());
 		content_xlv.setAdapter(adapter);
 
 		content_xlv.setOnItemClickListener(this);
@@ -195,14 +195,14 @@ public class KaoFragment extends BaseFragment implements OnItemClickListener, Ho
 					}.getType());
 					count_tv.setText("共有" + kaoMajor.countString + "个搜索结果");
 
-					if (kaoMajor.majorList.isEmpty()) {
+					if (kaoMajor.collegesList.isEmpty()) {
 						//TODO 这个地方不刷新
 						content_xlv.setEmptyView(empty_iv);
-						adapter.list = kaoMajor.majorList;
+						adapter.list = kaoMajor.collegesList;
 						adapter.notifyDataSetChanged();
 
 					} else {
-						initAdapter(kaoMajor.majorList);
+						initAdapter(kaoMajor.collegesList);
 					}
 				}
 			}
@@ -226,7 +226,7 @@ public class KaoFragment extends BaseFragment implements OnItemClickListener, Ho
 		queue.start();
 	}
 
-	private void initAdapter(List<Major> list) {
+	private void initAdapter(List<College> list) {
 
 		if (page == 0) {
 			adapter.addFirstPageData(list);
@@ -239,16 +239,18 @@ public class KaoFragment extends BaseFragment implements OnItemClickListener, Ho
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Object object = parent.getItemAtPosition(position);
+		
 		if (parent == content_xlv) {
+			//专业列表
+			if (object != null && object instanceof College) {
 
-			if (object != null && object instanceof Major) {
-
-				Major major = (Major) object;
-				Log.i(TAG, "major id = " + major.majorId);
-				Intent intent = CollegeDetailActivity.newIntent(major.collegeId);
+				College college = (College) object;
+				Log.i(TAG, "college id = " + college.collegeId);
+				Intent intent = CollegeDetailActivity.newIntent(college.collegeId);
 				startActivity(intent);
 			}
 		} else if (parent == conditions_lv) {
+			//左边listview
 			if (object != null && object instanceof Conditions) {
 				if (curPosition == position)
 					return;

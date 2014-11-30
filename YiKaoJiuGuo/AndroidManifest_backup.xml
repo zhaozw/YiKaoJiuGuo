@@ -126,6 +126,16 @@
             android:name=".ui.usercenter.exam.KaoDianActivity"
             android:label="@string/title_activity_kao_dian" >
         </activity>
+         <activity 
+            android:name="com.kongfuzi.student.ui.kao.PastExaminationPaper"
+            android:label="@string/title_activiyu_kaoti"
+            ></activity>
+        <activity android:name="com.kongfuzi.student.ui.kao.EnrollPlay"
+            	android:label="@string/title_activiyu_jihua"
+            ></activity>
+        <activity android:name="com.kongfuzi.student.ui.kao.ProspectusDetailsActivity"
+            android:label="@string/title_activity_zhoashengjianzhang_detail"
+            ></activity>
     </application>
 
 </manifest>

@@ -15,5 +15,5 @@ public class Examination {
 	public String title;
 	
 	@SerializedName("exam")
-	public List<Exam> exam_list;
+	public List<Exam> exam;
 }

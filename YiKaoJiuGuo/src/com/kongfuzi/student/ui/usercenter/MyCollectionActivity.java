@@ -7,7 +7,6 @@ import org.json.JSONObject;
 import me.maxwin.view.IXListViewRefreshListener;
 import me.maxwin.view.XListView;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,9 +20,9 @@ import com.kongfuzi.lib.volley.toolbox.JsonObjectRequest;
 import com.kongfuzi.student.R;
 import com.kongfuzi.student.app.YiKaoApplication;
 import com.kongfuzi.student.bean.KaoMajor;
-import com.kongfuzi.student.bean.Major;
+import com.kongfuzi.student.bean.College;
 import com.kongfuzi.student.support.utils.UrlConstants;
-import com.kongfuzi.student.ui.adapter.MajorListAdapter;
+import com.kongfuzi.student.ui.adapter.CollegeListAdapter;
 import com.kongfuzi.student.ui.global.BaseActivity;
 
 /**
@@ -39,7 +38,7 @@ public class MyCollectionActivity extends BaseActivity implements IXListViewRefr
 
 	private int page = 0;
 
-	private MajorListAdapter adapter = null;
+	private CollegeListAdapter adapter = null;
 
 	public static final String TAG = "MyCollectionActivity";
 
@@ -52,7 +51,7 @@ public class MyCollectionActivity extends BaseActivity implements IXListViewRefr
 		list_xlv = (XListView) findViewById(R.id.list_my_collection_xlv);
 		empty_iv = (ImageView) findViewById(R.id.empty_kao_iv);
 
-		adapter = new MajorListAdapter(this);
+		adapter = new CollegeListAdapter(this);
 		list_xlv.setAdapter(adapter);
 
 		list_xlv.setPullRefreshEnable(this);
@@ -74,14 +73,14 @@ public class MyCollectionActivity extends BaseActivity implements IXListViewRefr
 					Gson gson = new Gson();
 					KaoMajor kaoMajor = gson.fromJson(response.toString(), new TypeToken<KaoMajor>() {
 					}.getType());
-					count_tv.setText("共有" + kaoMajor.countString + "个搜索结果");
+					count_tv.setText("共有" + kaoMajor.collegesList.size() + "个搜索结果");
 
-					if (kaoMajor.majorList.isEmpty()) {
+					if (kaoMajor.collegesList.isEmpty()) {
 
 						list_xlv.setEmptyView(empty_iv);
 
 					} else {
-						initAdapter(kaoMajor.majorList);
+						initAdapter(kaoMajor.collegesList);
 					}
 				}
 			}
@@ -104,7 +103,7 @@ public class MyCollectionActivity extends BaseActivity implements IXListViewRefr
 		queue.start();
 	}
 
-	private void initAdapter(List<Major> list) {
+	private void initAdapter(List<College> list) {
 
 		if (page == 0) {
 			adapter.addFirstPageData(list);

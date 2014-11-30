@@ -29,7 +29,7 @@ import com.kongfuzi.student.ui.view.NoScrollListView;
  * 
  */
 public class ExaminationFragment extends BaseFragment {
-
+	
 	// ×¨ÒµÃû³Æ
 	private String major;
 
@@ -50,7 +50,7 @@ public class ExaminationFragment extends BaseFragment {
 		bundle.putInt(BundleArgsConstants.MAJOR_ID, id);
 		bundle.putString(BundleArgsConstants.MAJOR_NAME, major);
 		fragment.setArguments(bundle);
-
+		
 		return fragment;
 	}
 
@@ -58,7 +58,7 @@ public class ExaminationFragment extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.fragment_examination, container, false);
 	}
-
+	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
@@ -70,9 +70,9 @@ public class ExaminationFragment extends BaseFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
+		
 		getData();
-
+		
 	}
 
 	private void getData() {
@@ -93,11 +93,11 @@ public class ExaminationFragment extends BaseFragment {
 					entity.title = examination.title;
 					entity.isTitle = true;
 					list.add(entity);
-					List<Exam> exam_list = examination.exam_list;
+					List<Exam> exam_list = examination.exam;
 					for (int j = 0; j < exam_list.size(); j++) {
 						Entity entity2 = new Entity();
 						Exam exam = exam_list.get(j);
-						entity2.first = exam.first;
+//						entity2.first = exam.first;
 						entity2.second = exam.second;
 						entity2.body = exam.body;
 						entity2.isTitle = false;

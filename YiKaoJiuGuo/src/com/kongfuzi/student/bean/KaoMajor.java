@@ -21,6 +21,6 @@ public class KaoMajor {
 	 * 专业列表
 	 * */
 	@SerializedName("data")
-	public List<Major> majorList;
+	public List<College> collegesList;
 
 }

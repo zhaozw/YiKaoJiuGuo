@@ -18,6 +18,11 @@
     <color name="green_dark">#05aa99</color>
     <!-- 浅绿 -->
     <color name="green_light">#83d2cb</color>
+        <!-- 深绿色 -->
+    <color name="green_dark">#05aa99</color>
+    <!-- 浅绿 -->
+    <color name="green_light">#83d2cb</color>
+    <color name="yellow">#D9F21B</color>
     
 
 </resources>

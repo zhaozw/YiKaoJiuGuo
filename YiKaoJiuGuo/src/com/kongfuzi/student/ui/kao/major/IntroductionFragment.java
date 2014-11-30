@@ -25,7 +25,6 @@ public class IntroductionFragment extends Fragment {
 		Bundle bundle = new Bundle();
 		bundle.putString(BundleArgsConstants.INTRODUCTION, body);
 		fragment.setArguments(bundle);
-		
 		return fragment;
 	}
 	
@@ -37,11 +36,9 @@ public class IntroductionFragment extends Fragment {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		
 		content_tv = (TextView) view.findViewById(R.id.text_all_production_tv);
-		
 		String bodyString = getArguments().getString(BundleArgsConstants.INTRODUCTION);
-		
+		System.out.println("-------"+bodyString);
 		if (TextUtils.isEmpty(bodyString)) {
 			content_tv.setText("ÔÝÎÞÊý¾Ý");
 		} else {

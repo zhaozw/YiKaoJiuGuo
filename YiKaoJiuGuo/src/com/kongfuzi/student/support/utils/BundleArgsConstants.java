@@ -34,6 +34,13 @@ public class BundleArgsConstants {
 	public static final String CODE = "code";
 	public static final String INTRODUCTION = "introduction";
 	public static final String ERROR_MESSAGE = "error";
+	public static final String EXAM_ID = "exam_id";
+	public static final String ENROLL_PLAY_ID = "enroll_play_id";
+	public static final String ENROLL_PLAY_COLLEGE = "enroll_play_college";
+
+	public static final String MARJORDETAIL_TITLE="marjordetail_title";
+	public static final String PROSPECTUSDETAILS_ID="prospectusdetail";
+	public static final String PROSPECTUSDETAILS_TITLE="prospectusdetails_title";
 	
 //	public static final String MAJOR_ID = "";
 //	public static final String MAJOR_ID = "";

@@ -2,17 +2,21 @@ package com.kongfuzi.student.bean;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * @author LBDL
+ * @desc 专业
+ *
+ */
 public class Major {
 	
 	/**
-	 * 专业名称
+	 * 图片
 	 * */
-	@SerializedName("id")
-	public int majorId;
+	@SerializedName("litpic")
+	public String avatar;
 	
 	/**
 	 * 专业名称
-	 * 
 	 * */
 	@SerializedName("title")
 	public String major;
@@ -21,13 +25,7 @@ public class Major {
 	 * 大学名称
 	 * */
 	@SerializedName("collegeName")
-	public String college;
-	
-	/**
-	 * 图片
-	 * */
-	@SerializedName("litpic")
-	public String avatar;
+	public String collegeName;
 	
 	/**
 	 * 本科批次
@@ -41,29 +39,17 @@ public class Major {
 	@SerializedName("people")
 	public int recruit_count;
 	
-	
 	/**
-	 * 大学id
+	 * 报考人数
 	 * */
-	@SerializedName("aid")
-	public int collegeId;
-	
-	/**
-	 * 是否已报考
-	 * */
-	@SerializedName("isReg")
-	public Boolean isReg;
+	@SerializedName("reg")
+	public Boolean reg;
 	
 	/**
 	 * 该大学下是否有专业加入志愿
 	 * */
 	@SerializedName("ishidden")
 	public Boolean isHidden;
-	/**
-	 * 报考数
-	 * */
-	@SerializedName("reg")
-	public int kao_count;
 	
 	/**
 	 * 专业介绍
@@ -71,5 +57,9 @@ public class Major {
 	@SerializedName("body")
 	public String body;
 	
+	
+	@SerializedName("id")
+	public String id;
 
+	
 }

@@ -36,8 +36,12 @@ public class BaseActivity extends FragmentActivity {
 		loadingDialog = LoadingDialog.getInstance(this);
 		
 		actionBar = getActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setDisplayShowHomeEnabled(true);
+		if (actionBar != null) {
+			actionBar.setDisplayHomeAsUpEnabled(true);
+			actionBar.setDisplayShowHomeEnabled(true);
+//			actionBar.setBackgroundDrawable(getResources().get)
+			
+		}
 		
 	}
 	

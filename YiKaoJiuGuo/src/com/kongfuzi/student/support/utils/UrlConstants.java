@@ -37,7 +37,7 @@ public class UrlConstants {
 	//招生详情
 	public static final String RECRUIT_DETAIL = "http://www.kongfuzi.com/v1.php?m=College&a=recruitView";
 	//历年考题
-	public static final String EXAMINATION_LIST = "http://www.kongfuzi.com/v1.php?m=College&a=examList";
+	public static final String EXAMINATION_LIST = "http://www.kongfuzi.com/v2.php?m=College&a=examList";
 	//录取分数
 	public static final String ADMISSION_SCORE= "http://www.kongfuzi.com/v1.php?m=College&a=admissionScore";
 	//更多分数
@@ -86,7 +86,14 @@ public class UrlConstants {
 	public static final String MESSAGE_DETAIL = "http://www.kongfuzi.com/mobile.php?m=Index&a=view";
 	//引导页获取分类
 	public static final String HOME_CATEGORY = "http://www.kongfuzi.com/mobile.php?m=Data&a=getCategory";
-	
+	//大学详情
+	public static final String COLLEGE_DETAILS="http://www.kongfuzi.com/v2.php?m=College&a=view&id=";
+	//招生计划
+	public static final String ENROLL_PLAY="http://www.kongfuzi.com/v1.php?m=College&a=plan&id=";
+	//招生详情的Item的url
+	public static final String ENROLL_GUIDE_WEBVIEWURL="http://www.kongfuzi.com/v1.php?m=Member&a=recruitView";
+	//收藏大学
+		public static final String COLLECT_COLLEGE="http://www.kongfuzi.com/v2.php?m=College&a=focus";
 	/**
 	 * 专业列表url
 	 * @param content

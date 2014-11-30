@@ -34,11 +34,11 @@ public class ScoreFragment extends BaseFragment {
 	 * @param id
 	 * רҵid
 	 * */
-	public static ScoreFragment getInstance(int id){
+	public static ScoreFragment getInstance(String id){
 		
 		ScoreFragment fragment = new ScoreFragment();
 		Bundle bundle = new Bundle();
-		bundle.putInt(BundleArgsConstants.MAJOR_ID, id);
+		bundle.putString(BundleArgsConstants.MAJOR_ID, id);
 		fragment.setArguments(bundle);
 		return fragment;
 	}
@@ -66,14 +66,15 @@ public class ScoreFragment extends BaseFragment {
 	
 	private void getData() {
 		ArrayRequest<List<Score>> request = new ArrayRequest<List<Score>>(UrlConstants.MORE_SCORE +
-				"&id=" + getArguments().getInt(BundleArgsConstants.MAJOR_ID),new Listener<List<Score>>() {
-
+				"&id=" + getArguments().getString(BundleArgsConstants.MAJOR_ID),new Listener<List<Score>>() {
+			
 			@Override
 			public void onResponse(List<Score> response) {
 				progress_pb.setVisibility(View.GONE);
 				if (!response.isEmpty() && response != null) {
 					
 					list_lv.setAdapter(new ScoreAdapter(getActivity(),response));
+					
 				}
 				
 			}

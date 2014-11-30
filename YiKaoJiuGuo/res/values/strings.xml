@@ -14,6 +14,9 @@
     <string name="title_activity_examination">考试日程</string>
     <string name="title_activity_my_course">我的课程</string>
     <string name="title_activity_second_category"></string>
+    <string name="title_activity_recruit_plan">招生计划</string>
+    <string name="title_activity_recruit_jianzhang">招生简章</string>
+    <string name="title_activity_exam_ques">历年考题</string>
     <string name="title_activity_user_info">个人信息</string>
     <string name="title_activity_about">关于我们</string>
     <string name="title_activity_modify_password">修改密码</string>

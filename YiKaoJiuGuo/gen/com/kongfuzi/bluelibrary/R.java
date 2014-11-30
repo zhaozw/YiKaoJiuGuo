@@ -173,10 +173,10 @@ public final class R {
 		public static final int abs__bright_foreground_disabled_holo_light = 0x7f060005;
 		public static final int abs__bright_foreground_holo_dark = 0x7f060002;
 		public static final int abs__bright_foreground_holo_light = 0x7f060003;
-		public static final int abs__primary_text_disable_only_holo_dark = 0x7f060024;
-		public static final int abs__primary_text_disable_only_holo_light = 0x7f060025;
-		public static final int abs__primary_text_holo_dark = 0x7f060026;
-		public static final int abs__primary_text_holo_light = 0x7f060027;
+		public static final int abs__primary_text_disable_only_holo_dark = 0x7f060025;
+		public static final int abs__primary_text_disable_only_holo_light = 0x7f060026;
+		public static final int abs__primary_text_holo_dark = 0x7f060027;
+		public static final int abs__primary_text_holo_light = 0x7f060028;
 		public static final int background_tab_pressed = 0x7f060006;
 	}
 	public static final class dimen {
@@ -337,17 +337,17 @@ public final class R {
 		public static final int abs__textfield_searchview_right_holo_light = 0x7f02006f;
 		public static final int abs__toast_frame = 0x7f020070;
 		public static final int base_spinner_background_holo_light = 0x7f020073;
-		public static final int ic_base_spinner_default_holo_light = 0x7f020086;
-		public static final int ic_base_spinner_disabled_holo_light = 0x7f020087;
-		public static final int ic_base_spinner_focused_holo_light = 0x7f020088;
-		public static final int ic_base_spinner_pressed_holo_light = 0x7f020089;
-		public static final int ic_launcher = 0x7f02008a;
-		public static final int pstb_background_tab = 0x7f02009a;
-		public static final int ptr_default_ptr_flip = 0x7f02009b;
-		public static final int ptr_default_ptr_rotate = 0x7f02009c;
-		public static final int ptr_indicator_arrow = 0x7f02009d;
-		public static final int ptr_indicator_bg_bottom = 0x7f02009e;
-		public static final int ptr_indicator_bg_top = 0x7f02009f;
+		public static final int ic_base_spinner_default_holo_light = 0x7f02008c;
+		public static final int ic_base_spinner_disabled_holo_light = 0x7f02008d;
+		public static final int ic_base_spinner_focused_holo_light = 0x7f02008e;
+		public static final int ic_base_spinner_pressed_holo_light = 0x7f02008f;
+		public static final int ic_launcher = 0x7f020090;
+		public static final int pstb_background_tab = 0x7f0200a6;
+		public static final int ptr_default_ptr_flip = 0x7f0200a7;
+		public static final int ptr_default_ptr_rotate = 0x7f0200a8;
+		public static final int ptr_indicator_arrow = 0x7f0200a9;
+		public static final int ptr_indicator_bg_bottom = 0x7f0200aa;
+		public static final int ptr_indicator_bg_top = 0x7f0200ab;
 	}
 	public static final class id {
 		public static final int abs__action_bar = 0x7f09005d;
@@ -389,17 +389,17 @@ public final class R {
 		public static final int abs__textButton = 0x7f090050;
 		public static final int abs__title = 0x7f090058;
 		public static final int abs__up = 0x7f090001;
-		public static final int base_head_dots_parent_ll = 0x7f0900ce;
-		public static final int base_head_my_viewpager = 0x7f0900cd;
-		public static final int base_layout_bottom_ad_rl = 0x7f0900cb;
-		public static final int base_layout_center_content_rl = 0x7f0900cc;
+		public static final int base_head_dots_parent_ll = 0x7f0900db;
+		public static final int base_head_my_viewpager = 0x7f0900da;
+		public static final int base_layout_bottom_ad_rl = 0x7f0900d8;
+		public static final int base_layout_center_content_rl = 0x7f0900d9;
 		public static final int both = 0x7f090047;
 		public static final int disableHome = 0x7f090011;
 		public static final int disabled = 0x7f090043;
 		public static final int edit_query = 0x7f090063;
 		public static final int expandable = 0x7f090009;
 		public static final int expandable_toggle_button = 0x7f090008;
-		public static final int fl_inner = 0x7f09012f;
+		public static final int fl_inner = 0x7f090142;
 		public static final int flip = 0x7f09004b;
 		public static final int gridview = 0x7f09000a;
 		public static final int homeAsUp = 0x7f090012;
@@ -409,10 +409,10 @@ public final class R {
 		public static final int normal = 0x7f09000f;
 		public static final int pullFromEnd = 0x7f090049;
 		public static final int pullFromStart = 0x7f09004a;
-		public static final int pull_to_refresh_image = 0x7f090130;
-		public static final int pull_to_refresh_progress = 0x7f090131;
-		public static final int pull_to_refresh_sub_text = 0x7f090133;
-		public static final int pull_to_refresh_text = 0x7f090132;
+		public static final int pull_to_refresh_image = 0x7f090143;
+		public static final int pull_to_refresh_progress = 0x7f090144;
+		public static final int pull_to_refresh_sub_text = 0x7f090146;
+		public static final int pull_to_refresh_text = 0x7f090145;
 		public static final int rotate = 0x7f09004c;
 		public static final int scrollview = 0x7f09000c;
 		public static final int selected_view = 0x7f090006;
@@ -450,12 +450,12 @@ public final class R {
 		public static final int abs__search_dropdown_item_icons_2line = 0x7f030012;
 		public static final int abs__search_view = 0x7f030013;
 		public static final int abs__simple_dropdown_hint = 0x7f030014;
-		public static final int base_layout = 0x7f03002b;
-		public static final int base_my_viewpager_layout = 0x7f03002c;
-		public static final int ptr_pull_to_refresh_header_horizontal = 0x7f030050;
-		public static final int ptr_pull_to_refresh_header_vertical = 0x7f030051;
-		public static final int sherlock_spinner_dropdown_item = 0x7f030052;
-		public static final int sherlock_spinner_item = 0x7f030053;
+		public static final int base_layout = 0x7f03002f;
+		public static final int base_my_viewpager_layout = 0x7f030030;
+		public static final int ptr_pull_to_refresh_header_horizontal = 0x7f030057;
+		public static final int ptr_pull_to_refresh_header_vertical = 0x7f030058;
+		public static final int sherlock_spinner_dropdown_item = 0x7f030059;
+		public static final int sherlock_spinner_item = 0x7f03005a;
 	}
 	public static final class string {
 		public static final int abs__action_bar_home_description = 0x7f0a0000;

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.kongfuzi.student.R;
 import com.kongfuzi.student.app.YiKaoApplication;
-import com.kongfuzi.student.bean.Major;
+import com.kongfuzi.student.bean.College;
 import com.kongfuzi.student.bean.Volunteer;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -62,8 +62,8 @@ public class MyVolunteerAdapter extends SectionedBaseAdapter {
 	@Override
 	public View getItemView(int section, int position, View convertView, ViewGroup parent) {
 
-		Major major = list.get(section).majorList.get(position);
-		if (major == null) {
+		College college = list.get(section).majorList.get(position);
+		if (college == null) {
 			return convertView;
 		}
 
@@ -83,11 +83,11 @@ public class MyVolunteerAdapter extends SectionedBaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		imageLoader.displayImage(major.avatar, holder.avatar_iv);
-		holder.college_tv.setText(major.college);
-		holder.major_tv.setText(major.major);
-		holder.batch_tv.setText(major.batch);
-		holder.recruit_count_tv.setText("招生人数: " + major.recruit_count);
+		imageLoader.displayImage(college.avatar, holder.avatar_iv);
+		holder.college_tv.setText(college.college);
+		holder.major_tv.setText(college.college);
+		holder.batch_tv.setText(college.batch);
+		holder.recruit_count_tv.setText("招生人数: " + college.recruit_count);
 
 		return convertView;
 	}

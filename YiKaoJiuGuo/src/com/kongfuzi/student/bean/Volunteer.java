@@ -18,6 +18,6 @@ public class Volunteer {
 	public String majorName;
 	
 	@SerializedName("content")
-	public List<Major> majorList;
+	public List<College> majorList;
 
 }

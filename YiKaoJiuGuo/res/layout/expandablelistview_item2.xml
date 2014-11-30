@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView 
+        android:id="@+id/textView_exLv_item2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="设计素描"
+        android:textSize="20sp"
+        android:textColor="#8DDAD1"
+       
+        android:layout_marginTop="8dp"
+        android:paddingLeft="5dp"
+        android:layout_marginBottom="8dp"
+        />
+
+    <TextView
+        android:id="@+id/textView_exLv_item3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#F4F4F4"
+        android:text="考题:"
+        android:textColor="#4F4F4F"
+        android:textSize="16sp" />
+
+</LinearLayout>
